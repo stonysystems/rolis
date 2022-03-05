@@ -1,0 +1,699 @@
+diff --git a/b1.sh b/b1.sh
+index 403c22f..7e18744 100755
+--- a/b1.sh
++++ b/b1.sh
+@@ -7,5 +7,5 @@ let yyml=trd+1
+ sudo cgset -r cpuset.mems=0 cpulimitf
+ #sudo cgset -r cpuset.cpus=0-$trd cpulimitf
+ sudo cgset -r cpuset.cpus=0-$trd cpulimitf
+-sudo cgexec -g cpuset:cpulimitf ./out-perf.masstree/benchmarks/dbtest --verbose --bench tpcc --db-type mbta --scale-factor $trd --num-threads $trd --numa-memory 1G --parallel-loading --runtime 30 --bench-opts="--cpu-gap 1 --num-cpus 32" -F third-party/paxos/config/1silo_1paxos_2follower/$yyml.yml -F third-party/paxos/config/occ_paxos.yml --multi-process -P p1 > ./xxxx15/follower-$trd.log 2>&1 &
++sudo cgexec -g cpuset:cpulimitf ./out-perf.masstree/benchmarks/dbtest --verbose --bench tpcc --db-type mbta --scale-factor $trd --num-threads $trd --numa-memory 1G --parallel-loading --runtime 10 --bench-opts="--cpu-gap 1 --num-cpus 32" -F third-party/paxos/config/1silo_1paxos_2follower/$yyml.yml -F third-party/paxos/config/occ_paxos.yml --multi-process -P p1 > ./xxxx15/follower-$trd.log 2>&1 &
+ #tail -f ./xxxx15/follower-$trd.log
+diff --git a/b2.sh b/b2.sh
+index cd33bd7..ca0347d 100755
+--- a/b2.sh
++++ b/b2.sh
+@@ -6,5 +6,5 @@ trd=$1
+ let yyml=trd+1
+ sudo cgset -r cpuset.mems=0 cpulimitf
+ sudo cgset -r cpuset.cpus=0-$trd cpulimitf
+-sudo cgexec -g cpuset:cpulimitf ./out-perf.masstree/benchmarks/dbtest --verbose --bench tpcc --db-type mbta --scale-factor $trd --num-threads $trd --numa-memory 1G --parallel-loading --runtime 30 --bench-opts="--cpu-gap 1 --num-cpus 32" -F third-party/paxos/config/1silo_1paxos_2follower/$yyml.yml -F third-party/paxos/config/occ_paxos.yml --multi-process -P p2 > ./xxxx15/follower-$trd.log 2>&1 &
++sudo cgexec -g cpuset:cpulimitf ./out-perf.masstree/benchmarks/dbtest --verbose --bench tpcc --db-type mbta --scale-factor $trd --num-threads $trd --numa-memory 1G --parallel-loading --runtime 10 --bench-opts="--cpu-gap 1 --num-cpus 32" -F third-party/paxos/config/1silo_1paxos_2follower/$yyml.yml -F third-party/paxos/config/occ_paxos.yml --multi-process -P p2 > ./xxxx15/follower-$trd.log 2>&1 &
+ #tail -f ./xxxx15/follower-$trd.log
+diff --git a/batch_silo.sh b/batch_silo.sh
+index 05d35e5..07217a4 100755
+--- a/batch_silo.sh
++++ b/batch_silo.sh
+@@ -3,8 +3,8 @@ clients=(
+         # "10.1.0.7"
+         "10.1.0.8" # p1
+         "10.1.0.9" # p2
+-        "10.1.0.72" # p3
+-        "10.1.0.73" # p4
++#        "10.1.0.72" # p3
++#        "10.1.0.73" # p4
+ )
+ 
+ cmd1="cd ~/weihai-projects && bash sync.sh"
+diff --git a/benchmarks/dbtest.cc b/benchmarks/dbtest.cc
+index 5360fb5..e1f3872 100644
+--- a/benchmarks/dbtest.cc
++++ b/benchmarks/dbtest.cc
+@@ -34,19 +34,20 @@
+ using namespace std;
+ using namespace util;
+ using namespace sync_util;
+-
++#define DBTEST_PROFILER_ENABLED
++#define USE_JEMALLOC
+ 
+ int
+ main(int argc, char **argv)
+ {
+-    /*
+-#if defined DBTEST_PROFILER_ENABLED
+-  #ifdef USE_JEMALLOC
+-    ProfilerStart("dbtest.prof");
+-  #elif defined USE_TCMALLOC
+-    //HeapProfilerStart("dbtest.prof");
+-  #endif
+-#endif */
++//#if defined DBTEST_PROFILER_ENABLED
++//  #ifdef USE_JEMALLOC
++//    std::cout << "##############START profiler\n";
++//    ProfilerStart("dbtest-44.prof");
++//  #elif defined USE_TCMALLOC
++//    //HeapProfilerStart("dbtest.prof");
++//  #endif
++//#endif
+   vector<string> paxos_config_file{};
+   string bench_type = "tpcc";
+   int kSTOBatchSize = 1000;
+@@ -585,7 +586,8 @@ main(int argc, char **argv)
+   #endif
+ 
+   register_sync_util([&]() {
+-    return get_epoch();
++    //return get_epoch();
++    return 1;
+   });
+ 
+   register_leader_election_callback([&]() {
+@@ -597,183 +599,185 @@ main(int argc, char **argv)
+ 
+   for (int i = 0; i < nthreads; i++) {
+     register_for_follower_par_id_return([&,i](const char*& log, int len, int par_id, std::queue<std::tuple<unsigned long long int, int, int, const char *>> & un_replay_logs_) {
+-      abstract_db * db = tpool_mbta.getDBWrapper(par_id)->getDB () ;
+-
+-      // status: 1 => init, 2 => ending of paxos group, 3 => can't pass the safety check, 4 => complete replay, 5 => noops
+-      int status = 1 ;
+-      unsigned long long int latest_commit_id = 0 ;
+-      bool stats = false ;
+-      bool local_end_recv = false ;
+-      bool noops = false ;
+-
+-      if(len == 0){
+-        std::cout << "par_id " << par_id << " is ended..." << std::endl;
+-        end_recv = true;
+-        count ++;
+-        local_end_recv = true ;
+-        status = 2; // ending of one paxos group
+-        uint64_t min_so_far = numeric_limits<uint64_t>::max();
+-        sync_util::sync_logger::cg_[par_id].store(min_so_far, memory_order_release) ;   // latest_commit_id for each partition should be non-descending
+-      }
+-      #if ALLOW_FOLLOWER_REPLAY
+-      if (!local_end_recv) {
+-         // XXX, no more than 1 failure happen during this switch period
+-         if (isNoops(log, len)) {
+-            noops = true ;
+-            status = 5 ;
+-         }
+-         auto startTime = std::chrono::high_resolution_clock::now ();
+-         // readyQueueTracker.push_back( un_replay_logs_.size() ) ;
+-         #ifdef OPTIMIZED_VERSION
+-          if (noops) {
+-	      printf("1: received a no-ops, par_id: %d\n", par_id);
+-              // need to wait until all followers can get thie noops
+-              sync_util::sync_logger::noops_cnt ++ ;
+-              while (1) {
+-                  // check if all threads receive noops
+-                  if (sync_util::sync_logger::noops_cnt.load(memory_order_acquire) % nthreads == 0) {
+-	              printf("1-1: received a no-ops, par_id: %d, cnt: %d\n", par_id, sync_util::sync_logger::noops_cnt.load(memory_order_acquire));
+-                      break ;
+-                  } else {
+-                      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+-                  }
+-              }
+-          } else {
+-              latest_commit_id = get_latest_commit_id ((char *) log, len) ;
+-              latest_commit_id = latest_commit_id / 1000 ;
+-              int epoch = latest_commit_id % 1000 ;
+-              sync_util::sync_logger::cg_[par_id].store(latest_commit_id, memory_order_release) ;
+-              auto g = sync_util::sync_logger::retrieveG() ;
+-              if (latest_commit_id > g) {
+-                  status = 3 ; // can't pass the safety check
+-              } else {
+-                  //auto nums = treplay_in_same_thread_opt(par_id, (char *) log, len, std::ref(tpool.getDBWrapper(par_id)->getDB ()), table_logger::table_set);
+-                  //auto nums = treplay_in_same_thread_opt_mbta(par_id, (char *) log, len, db, table_logger::table_set);
+-                  auto nums = treplay_in_same_thread_opt_mbta_v2(par_id, (char *) log, len, db);
+-                  status = 4 ; // complete replay
+-              }
+-          }
+-
+-          uint64_t g = 0 ;
+-          if (noops) {
+-              g = sync_util::sync_logger::computeG() ;
+-          } else {
+-              g = sync_util::sync_logger::retrieveG(false) ;
+-          }
+-          // check if we can replay in ready_queue
+-          while ( un_replay_logs_.size() > 0 ) {
+-              auto it = un_replay_logs_.front() ;
+-              if (std::get<0>(it) <= g) {
+-                  //auto nums = treplay_in_same_thread_opt(par_id, (char *) std::get<3>(it), std::get<2>(it), std::ref(tpool.getDBWrapper(par_id)->getDB ()), table_logger::table_set);
+-                  //auto nums = treplay_in_same_thread_opt_mbta(par_id, (char *) std::get<3>(it), std::get<2>(it), db, table_logger::table_set);
+-                  auto nums = treplay_in_same_thread_opt_mbta_v2(par_id, (char *) std::get<3>(it), std::get<2>(it), db);
+-                  un_replay_logs_.pop() ;
+-                  free((char*)std::get<3>(it));
+-              } else {
+-                  if (noops) {
+-                      un_replay_logs_.pop() ;
+-                      free((char*)std::get<3>(it));
+-                  } else {
+-                      break ;
+-                  }
+-              }
+-          }
+-
+-          if (noops) {
+-              // need to wait until upon all followers skipping holes
+-              sync_util::sync_logger::noops_cnt_hole ++ ;
+-	      printf("2: received a no-ops, par_id: %d\n", par_id);
+-              while (1) {
+-                  if (sync_util::sync_logger::noops_cnt_hole.load(memory_order_acquire) % nthreads == 0) {
+-	              printf("2-1: received a no-ops, par_id: %d, cnt: %d\n", par_id, sync_util::sync_logger::noops_cnt_hole.load(memory_order_acquire));
+-                      break ;
+-                  } else {
+-                      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+-                  }
+-              }
+-
+-              sync_util::sync_logger::cg_[par_id].store(0, memory_order_release) ;
+-              // need to wait until upon all followers's initialization
+-              sync_util::sync_logger::noops_cnt_init ++ ;
+-	      printf("3: received a no-ops, par_id: %d\n", par_id);
+-              while (1) {
+-                  if (sync_util::sync_logger::noops_cnt_init.load(memory_order_acquire) % nthreads == 0) {
+-	              printf("3-1: received a no-ops, par_id: %d, cnt: %d\n", par_id, sync_util::sync_logger::noops_cnt_init.load(memory_order_acquire));
+-                      break ;
+-                  } else {
+-                      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+-                  }
+-              }
+-              sync_util::sync_logger::computeG() ;
+-          }
+-      	#else
+-          assert(len % 27 == 0) ;
+-          //Treplay_in_same_thread_wrapper_pointer_even(par_id, 0, (char *)log, len / 27, tpool.getDBWrapper(par_id)->getDB ());
+-	    #endif
+-
+-        auto endTime = std::chrono::high_resolution_clock::now ();
+-        TimerMapper::add_time ("replay_wait_"+std::to_string(i), std::chrono::duration_cast<std::chrono::nanoseconds> (endTime - startTime).count (),1000.0 * 1000.0);
+-      #endif
+-      }
+-
+-      if (stats) {
+-          auto time_stamp = std::to_string(static_cast<long int> (std::time(0)));
+-          _follower_callbacks[time_stamp]++;
+-          #if ALLOW_FOLLOWER_REPLAY
+-          if(local_end_recv){
+-            auto str_time_stamp = std::to_string(static_cast<long int> (std::time(0)));
+-            auto time_stamp = static_cast<long int> (std::time(0));
+-            std::cout << "[[end]] " << time_stamp << ":" << str_time_stamp << std::endl;
+-            int _count=0;
+-            for(auto &each: _follower_callbacks){
+-                std::cout << _count << " : seconds elapsed " << " Epoch : " << each.first << " : count " << each.second << std::endl;
+-                _count++;
+-            }
+-          }
+-          #endif
+-      }
+-
+-      if (local_end_recv) {  // lag stage for each paxos group: at this stage, make sure all logs have to be replayed
+-         printf("par_id: %d has %lu to be replayed!\n", par_id, un_replay_logs_.size());
+-         while (un_replay_logs_.size() > 0) {
+-             auto gg = sync_util::sync_logger::retrieveG() ;
+-             auto itt = un_replay_logs_.front() ;
+-              if (std::get<0>(itt) <= gg) {
+-                  //treplay_in_same_thread_opt(par_id, (char *) std::get<3>(itt), std::get<2>(itt), std::ref(tpool.getDBWrapper(par_id)->getDB ()), table_logger::table_set);
+-                  //treplay_in_same_thread_opt_mbta(par_id, (char *) std::get<3>(itt), std::get<2>(itt), db, table_logger::table_set);
+-                  treplay_in_same_thread_opt_mbta_v2(par_id, (char *) std::get<3>(itt), std::get<2>(itt), db);
+-                  un_replay_logs_.pop() ;
+-                  free((char*)std::get<3>(itt));
+-              } else {
+-                  std::this_thread::sleep_for(std::chrono::microseconds(500));
+-              }
+-         }
+-         //std::cout << "par_id: " << par_id << " has completed: " << un_replay_logs_.size() << std::endl;
+-      }
+-      return latest_commit_id * 10 + status ;
++      return 4;
++     // abstract_db * db = tpool_mbta.getDBWrapper(par_id)->getDB () ;
++
++     // // status: 1 => init, 2 => ending of paxos group, 3 => can't pass the safety check, 4 => complete replay, 5 => noops
++     // int status = 1 ;
++     // unsigned long long int latest_commit_id = 0 ;
++     // bool stats = false ;
++     // bool local_end_recv = false ;
++     // bool noops = false ;
++
++     // if(len == 0){
++     //   std::cout << "par_id " << par_id << " is ended..." << std::endl;
++     //   end_recv = true;
++     //   count ++;
++     //   local_end_recv = true ;
++     //   status = 2; // ending of one paxos group
++     //   uint64_t min_so_far = numeric_limits<uint64_t>::max();
++     //   sync_util::sync_logger::cg_[par_id].store(min_so_far, memory_order_release) ;   // latest_commit_id for each partition should be non-descending
++     // }
++     // #if ALLOW_FOLLOWER_REPLAY
++     // if (!local_end_recv) {
++     //    // XXX, no more than 1 failure happen during this switch period
++     //    if (isNoops(log, len)) {
++     //       noops = true ;
++     //       status = 5 ;
++     //    }
++     //    auto startTime = std::chrono::high_resolution_clock::now ();
++     //    // readyQueueTracker.push_back( un_replay_logs_.size() ) ;
++     //    #ifdef OPTIMIZED_VERSION
++     //     if (noops) {
++     //         printf("1: received a no-ops, par_id: %d\n", par_id);
++     //         // need to wait until all followers can get thie noops
++     //         sync_util::sync_logger::noops_cnt ++ ;
++     //         while (1) {
++     //             // check if all threads receive noops
++     //             if (sync_util::sync_logger::noops_cnt.load(memory_order_acquire) % nthreads == 0) {
++     //                 printf("1-1: received a no-ops, par_id: %d, cnt: %d\n", par_id, sync_util::sync_logger::noops_cnt.load(memory_order_acquire));
++     //                 break ;
++     //             } else {
++     //                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
++     //             }
++     //         }
++     //     } else {
++     //         latest_commit_id = get_latest_commit_id ((char *) log, len) ;
++     //         latest_commit_id = latest_commit_id / 1000 ;
++     //         int epoch = latest_commit_id % 1000 ;
++     //         sync_util::sync_logger::cg_[par_id].store(latest_commit_id, memory_order_release) ;
++     //         auto g = sync_util::sync_logger::retrieveG() ;
++     //         if (latest_commit_id > g) {
++     //             status = 3 ; // can't pass the safety check
++     //         } else {
++     //             //auto nums = treplay_in_same_thread_opt(par_id, (char *) log, len, std::ref(tpool.getDBWrapper(par_id)->getDB ()), table_logger::table_set);
++     //             //auto nums = treplay_in_same_thread_opt_mbta(par_id, (char *) log, len, db, table_logger::table_set);
++     //             auto nums = treplay_in_same_thread_opt_mbta_v2(par_id, (char *) log, len, db);
++     //             status = 4 ; // complete replay
++     //         }
++     //     }
++
++     //     uint64_t g = 0 ;
++     //     if (noops) {
++     //         g = sync_util::sync_logger::computeG() ;
++     //     } else {
++     //         g = sync_util::sync_logger::retrieveG(false) ;
++     //     }
++     //     // check if we can replay in ready_queue
++     //     while ( un_replay_logs_.size() > 0 ) {
++     //         auto it = un_replay_logs_.front() ;
++     //         if (std::get<0>(it) <= g) {
++     //             //auto nums = treplay_in_same_thread_opt(par_id, (char *) std::get<3>(it), std::get<2>(it), std::ref(tpool.getDBWrapper(par_id)->getDB ()), table_logger::table_set);
++     //             //auto nums = treplay_in_same_thread_opt_mbta(par_id, (char *) std::get<3>(it), std::get<2>(it), db, table_logger::table_set);
++     //             auto nums = treplay_in_same_thread_opt_mbta_v2(par_id, (char *) std::get<3>(it), std::get<2>(it), db);
++     //             un_replay_logs_.pop() ;
++     //             free((char*)std::get<3>(it));
++     //         } else {
++     //             if (noops) {
++     //                 un_replay_logs_.pop() ;
++     //                 free((char*)std::get<3>(it));
++     //             } else {
++     //                 break ;
++     //             }
++     //         }
++     //     }
++
++     //     if (noops) {
++     //         // need to wait until upon all followers skipping holes
++     //         sync_util::sync_logger::noops_cnt_hole ++ ;
++     //         printf("2: received a no-ops, par_id: %d\n", par_id);
++     //         while (1) {
++     //             if (sync_util::sync_logger::noops_cnt_hole.load(memory_order_acquire) % nthreads == 0) {
++     //                 printf("2-1: received a no-ops, par_id: %d, cnt: %d\n", par_id, sync_util::sync_logger::noops_cnt_hole.load(memory_order_acquire));
++     //                 break ;
++     //             } else {
++     //                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
++     //             }
++     //         }
++
++     //         sync_util::sync_logger::cg_[par_id].store(0, memory_order_release) ;
++     //         // need to wait until upon all followers's initialization
++     //         sync_util::sync_logger::noops_cnt_init ++ ;
++     //         printf("3: received a no-ops, par_id: %d\n", par_id);
++     //         while (1) {
++     //             if (sync_util::sync_logger::noops_cnt_init.load(memory_order_acquire) % nthreads == 0) {
++     //                 printf("3-1: received a no-ops, par_id: %d, cnt: %d\n", par_id, sync_util::sync_logger::noops_cnt_init.load(memory_order_acquire));
++     //                 break ;
++     //             } else {
++     //                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
++     //             }
++     //         }
++     //         sync_util::sync_logger::computeG() ;
++     //     }
++     // 	#else
++     //     assert(len % 27 == 0) ;
++     //     //Treplay_in_same_thread_wrapper_pointer_even(par_id, 0, (char *)log, len / 27, tpool.getDBWrapper(par_id)->getDB ());
++     //       #endif
++
++     //   auto endTime = std::chrono::high_resolution_clock::now ();
++     //   TimerMapper::add_time ("replay_wait_"+std::to_string(i), std::chrono::duration_cast<std::chrono::nanoseconds> (endTime - startTime).count (),1000.0 * 1000.0);
++     // #endif
++     // }
++
++     // if (stats) {
++     //     auto time_stamp = std::to_string(static_cast<long int> (std::time(0)));
++     //     _follower_callbacks[time_stamp]++;
++     //     #if ALLOW_FOLLOWER_REPLAY
++     //     if(local_end_recv){
++     //       auto str_time_stamp = std::to_string(static_cast<long int> (std::time(0)));
++     //       auto time_stamp = static_cast<long int> (std::time(0));
++     //       std::cout << "[[end]] " << time_stamp << ":" << str_time_stamp << std::endl;
++     //       int _count=0;
++     //       for(auto &each: _follower_callbacks){
++     //           std::cout << _count << " : seconds elapsed " << " Epoch : " << each.first << " : count " << each.second << std::endl;
++     //           _count++;
++     //       }
++     //     }
++     //     #endif
++     // }
++
++     // if (local_end_recv) {  // lag stage for each paxos group: at this stage, make sure all logs have to be replayed
++     //    printf("par_id: %d has %lu to be replayed!\n", par_id, un_replay_logs_.size());
++     //    while (un_replay_logs_.size() > 0) {
++     //        auto gg = sync_util::sync_logger::retrieveG() ;
++     //        auto itt = un_replay_logs_.front() ;
++     //         if (std::get<0>(itt) <= gg) {
++     //             //treplay_in_same_thread_opt(par_id, (char *) std::get<3>(itt), std::get<2>(itt), std::ref(tpool.getDBWrapper(par_id)->getDB ()), table_logger::table_set);
++     //             //treplay_in_same_thread_opt_mbta(par_id, (char *) std::get<3>(itt), std::get<2>(itt), db, table_logger::table_set);
++     //             treplay_in_same_thread_opt_mbta_v2(par_id, (char *) std::get<3>(itt), std::get<2>(itt), db);
++     //             un_replay_logs_.pop() ;
++     //             free((char*)std::get<3>(itt));
++     //         } else {
++     //             std::this_thread::sleep_for(std::chrono::microseconds(500));
++     //         }
++     //    }
++     //    //std::cout << "par_id: " << par_id << " has completed: " << un_replay_logs_.size() << std::endl;
++     // }
++     // return latest_commit_id * 10 + status ;
+       }, i);
+ 
+     register_for_leader_par_id_return([&,i](const char*& log, int len, int par_id, std::queue<std::tuple<unsigned long long int, int, int, const char *>> & un_replay_logs_) {
+-	#ifdef PAXOS_LEADER_HERE
+-      auto latest_commit_id = get_latest_commit_id ((char *) log, len) ;
+-      latest_commit_id = latest_commit_id / 1000 ;
+-      int epoch = latest_commit_id % 1000 ;
+-      sync_util::sync_logger::cg_[par_id].store(latest_commit_id, memory_order_release) ;
+-      bool stats = false ;
+-      if (stats) {
+-          auto time_stamp = std::to_string(static_cast<long int> (std::time(0)));
+-          _leader_callbacks[time_stamp]++;
+-      }
+-
+-      uint64_t g = sync_util::sync_logger::retrieveG(true) ;
+-      if (g != numeric_limits<uint64_t>::max() && g > latestG) {
+-          latestG = g ;
+-    #if defined(LATENCY)
+-          advanceGTracker.push_back(std::make_pair(g, timer::cur_usec() )) ;
+-    #endif
+-      }
+-    #endif
+-    return 0;
++		    return 4;
++//#ifdef PAXOS_LEADER_HERE
++//      auto latest_commit_id = get_latest_commit_id ((char *) log, len) ;
++//      latest_commit_id = latest_commit_id / 1000 ;
++//      int epoch = latest_commit_id % 1000 ;
++//      sync_util::sync_logger::cg_[par_id].store(latest_commit_id, memory_order_release) ;
++//      bool stats = false ;
++//      if (stats) {
++//          auto time_stamp = std::to_string(static_cast<long int> (std::time(0)));
++//          _leader_callbacks[time_stamp]++;
++//      }
++//
++//      uint64_t g = sync_util::sync_logger::retrieveG(true) ;
++//      if (g != numeric_limits<uint64_t>::max() && g > latestG) {
++//          latestG = g ;
++//    #if defined(LATENCY)
++//          advanceGTracker.push_back(std::make_pair(g, timer::cur_usec() )) ;
++//    #endif
++//      }
++//    #endif
++//    return 0;
+     }, i);
+   }
+ 
+@@ -851,6 +855,14 @@ main(int argc, char **argv)
+   } else { // leader
+       //tpool.closeAll(nthreads) ;
+       tpool_mbta.closeAll(nthreads) ;
++//    #if defined DBTEST_PROFILER_ENABLED
++//      #ifdef USE_JEMALLOC
++//        std::cout << "#############STOP profiler\n";
++//        ProfilerStop();
++//    #elif defined USE_TCMALLOC
++//        //HeapProfilerStop();
++//    #endif
++//  #endif 
+   }
+   sync_util::sync_logger::shutdown() ;
+ #endif
+@@ -931,17 +943,14 @@ main(int argc, char **argv)
+   }
+   #endif
+    
+-  /*
+-  #if defined DBTEST_PROFILER_ENABLED
+-    #ifdef USE_JEMALLOC
+-        ProfilerStop();
+-    #elif defined USE_TCMALLOC
+-        //HeapProfilerStop();
+-    #endif
+-  #endif */
++//  #if defined DBTEST_PROFILER_ENABLED
++//    #ifdef USE_JEMALLOC
++//        ProfilerStop();
++//	std::cout << "#############STOP profile\n";
++//    #elif defined USE_TCMALLOC
++//        //HeapProfilerStop();
++//    #endif
++//  #endif 
+ 
+   return reret;
+ }
+-
+-
+-
+diff --git a/benchmarks/mbta_wrapper_norm.hh b/benchmarks/mbta_wrapper_norm.hh
+index 65fddc0..31d3b44 100644
+--- a/benchmarks/mbta_wrapper_norm.hh
++++ b/benchmarks/mbta_wrapper_norm.hh
+@@ -921,6 +921,7 @@ public:
+     if(!loader){
+       // XXX, one Silo thread has a corresponding paxos group, it could be configurable in the future
+       size_t old = __sync_fetch_and_add(&partition_id, 1);
++      //old = 0;
+       TThread::set_pid (old);
+ 
+       std::cout << "ParID now : " << old << std::endl;
+diff --git a/benchmarks/sto/ThreadPool.cc b/benchmarks/sto/ThreadPool.cc
+index 70431e4..5bb9ea1 100644
+--- a/benchmarks/sto/ThreadPool.cc
++++ b/benchmarks/sto/ThreadPool.cc
+@@ -1036,8 +1036,7 @@ size_t getFileContentNew_OneLogOptimized_mbta_v2(char *buffer, unsigned long lon
+         }
+ 
+         if (delete_true) {  // FLAGXXX,
+-            //value = "01234567" ;  // DELETE + 8 bytes for cid
+-            continue;
++            value = "01234567" ;  // DELETE + 8 bytes for cid
+         }
+ 
+         // 6. encode value + cid
+diff --git a/benchmarks/sto/Transaction.cc b/benchmarks/sto/Transaction.cc
+index 283d691..7e3df24 100644
+--- a/benchmarks/sto/Transaction.cc
++++ b/benchmarks/sto/Transaction.cc
+@@ -48,7 +48,9 @@ StringAllocator::~StringAllocator(){
+         #ifdef ALLOW_PAXOS_INTERCEPT
+ 	      paxos_intercept((char *)queueLog, pos, TThread::getPartitionID ());
+         #else
++	    //for (int t=0; t<15; ++t) { // the best value to achieve the optimized value
+ 	      add_log_to_nc((char *)queueLog, pos, TThread::getPartitionID ());
++	    //}
+         #endif
+   	}
+ 	#endif
+@@ -418,8 +420,9 @@ bool Transaction::try_commit(bool no_paxos) {
+ 
+     // fence();
+     #if defined(SERIALIZE_FEATURE)
+-    if(!no_paxos)
++    if(!no_paxos) {
+     	serialize_util(nwriteset); 
++    }
+     #endif
+     stop(true, writeset, nwriteset);
+     return true;
+@@ -660,7 +663,27 @@ inline void Transaction::serialize_util(unsigned nwriteset) const{
+           #ifdef ALLOW_PAXOS_INTERCEPT
+             paxos_intercept((char *)queueLog, pos, TThread::getPartitionID ());
+           #else
+-            add_log_to_nc((char *)queueLog, pos, TThread::getPartitionID ());
++
++            int outstanding = get_outstanding_logs(TThread::getPartitionID ()) ;
++            //std::cout << "XXXXXXXXXXXXXXX: " << outstanding << " : " << get_outstanding_logs_cur(TThread::getPartitionID ()) << " : " << get_outstanding_logs_tol(TThread::getPartitionID ()) << std::endl;
++            while (1) {
++                if (outstanding >= 200||(outstanding <200 && outstanding>10)) {
++                    //usleep(1000 * 1) ; // sleep 1ms
++                    outstanding = get_outstanding_logs(TThread::getPartitionID ()) ;
++		    continue;
++                } 
++		if (outstanding <= 10) {
++                    outstanding = get_outstanding_logs(TThread::getPartitionID ()) ;
++                    break;
++                }
++
++		//if (outstanding <200 && outstanding>10) {
++                //    //usleep(1000 * 1) ; // sleep 1ms
++                //    outstanding = get_outstanding_logs(TThread::getPartitionID ()) ;
++		//    continue;
++		//}
++            }
++               add_log_to_nc((char *)queueLog, pos, TThread::getPartitionID ());
+           #endif
+ 	  }
+ 	  #endif
+diff --git a/multi-silo-only.sh b/multi-silo-only.sh
+index daf1b83..0a876ec 100755
+--- a/multi-silo-only.sh
++++ b/multi-silo-only.sh
+@@ -1,16 +1,15 @@
+ #!/bin/bash
+-# ulimit -n 8000
++ulimit -n 10000
+ # ----------------------------------------------------------------------------- compile ------------------------------------------------------------------------------------------
+ sudo pkill -f dbtest
++sleep 1
+ mkdir -p silo-only-logs 
+ make clean && make -j dbtest MODE=perf SERIALIZE=0 PAXOS_ENABLE_CONFIG=0 STO_BATCH_CONFIG=0 SILO_SERIAL_CONFIG=0 PAXOS_ZERO_CONFIG=0 LOGGING_TO_ONLY_FILE=0 OPTIMIZED_REPLAY=0 REPLAY_FOLLOWER=0 DBTEST_PROFILER=0
+ 
+-sleep 1
+-
+ sstart=$1
+ eend=$2
+-
+ # ----------------------------------------------------------------------------- RUN ------------------------------------------------------------------------------------------
++
+ for (( trd=$sstart; trd<=$eend; trd++ ))
+ do
+     echo "starting CPU: $trd"
+@@ -18,10 +17,18 @@ do
+     sudo cgdelete -g cpuset:/cpulimitl
+     sudo cgcreate -t $USER:$USER -a $USER:$USER  -g cpuset:/cpulimitl
+     sudo cgset -r cpuset.mems=0 cpulimitl 
+-    sudo cgset -r cpuset.cpus=0-$trd cpulimitl
+-    echo "./out-perf.masstree/benchmarks/dbtest --verbose --bench micro --db-type mbta --scale-factor $trd --num-threads $trd --numa-memory 1G --parallel-loading --runtime 30 --bench-opts="--cpu-gap 1 --num-cpus 32" -F third-party/paxos/config/1silo_1paxos_1follower/$trd.yml -F third-party/paxos/config/occ_paxos.yml --paxos-leader-config --multi-process -P localhost -S 1000"
+-    #sudo cgexec -g cpuset:cpulimitl ./out-perf.masstree/benchmarks/dbtest --verbose --bench tpcc --db-type mbta --scale-factor $trd --num-threads $trd --numa-memory 1G --parallel-loading --runtime 30 --bench-opts="--cpu-gap 1 --num-cpus 32" -F third-party/paxos/config/1silo_1paxos_1follower/$trd.yml -F third-party/paxos/config/occ_paxos.yml --paxos-leader-config --multi-process -P localhost -S 1000 > ./silo-only-logs/leader-$trd.log 2>&1 &
+-    sudo cgexec -g cpuset:cpulimitl ./out-perf.masstree/benchmarks/dbtest --verbose --bench micro --db-type mbta --scale-factor $trd --num-threads $trd --numa-memory 1G --parallel-loading --runtime 30 -F third-party/paxos/config/1silo_1paxos_1follower/$trd.yml -F third-party/paxos/config/occ_paxos.yml --paxos-leader-config --multi-process -P localhost -S 1000 > ./silo-only-logs/leader-$trd.log 2>&1 &
++    sudo cgset -r cpuset.cpus=0-$((trd-1)) cpulimitl
++    sudo cgexec -g cpuset:cpulimitl ./out-perf.masstree/benchmarks/dbtest --verbose \
++	                                                                  --bench tpcc --db-type mbta --scale-factor $trd --num-threads $trd \
++									  --numa-memory 1G --parallel-loading --runtime 30 --bench-opts="--cpu-gap 1 --num-cpus 32" \
++									  -F third-party/paxos/config/1silo_1paxos_1follower/$trd.yml \
++									  -F third-party/paxos/config/occ_paxos.yml \
++									  --paxos-leader-config --multi-process -P localhost -S 1000 > ./silo-only-logs/leader-$trd.log 2>&1 &
++#    sudo cgexec -g cpuset:cpulimitl ./out-perf.masstree/benchmarks/dbtest --verbose \
++#	   								  --bench micro --db-type mbta --scale-factor $trd --num-threads $trd \ 
++#                                                                         -F third-party/paxos/config/1silo_1paxos_1follower/$trd.yml \
++#									  --numa-memory 1G --parallel-loading --runtime 30 -F third-party/paxos/config/occ_paxos.yml \
++#									  --paxos-leader-config --multi-process -P localhost -S 1000 > ./silo-only-logs/leader-$trd.log 2>&1 &
+    let s=10+trd+30
+    sleep $s
+    echo "ending CPU: $trd"
+diff --git a/multi.sh b/multi.sh
+index e8f1296..d237dae 100755
+--- a/multi.sh
++++ b/multi.sh
+@@ -2,10 +2,10 @@
+ # ulimit -n 8000
+ # ----------------------------------------------------------------------------- compile ------------------------------------------------------------------------------------------
+ sudo pkill -f dbtest
+-make paxos
++#make paxos
+ make clean && make -j dbtest MODE=perf \
+                       SERIALIZE=1 PAXOS_ENABLE_CONFIG=1 \
+                       STO_BATCH_CONFIG=2 SILO_SERIAL_CONFIG=0 \
+                       PAXOS_ZERO_CONFIG=0 LOGGING_TO_ONLY_FILE=0 \
+                       OPTIMIZED_REPLAY=1 REPLAY_FOLLOWER=1 \
+-                      DBTEST_PROFILER=0
+\ No newline at end of file
++                      DBTEST_PROFILER=0
+diff --git a/scripts/extractor.py b/scripts/extractor.py
+index 9ceb488..977fdab 100644
+--- a/scripts/extractor.py
++++ b/scripts/extractor.py
+@@ -8,7 +8,7 @@ if __name__ == "__main__":
+     params = sys.argv
+ 
+     skip_index = int(params[1]) 
+-    file_pattern = "./" + params[2] + "/leader-{num}.log"
++    file_pattern = "./" + params[2] + "/leader-{num}-1000.log"
+     search_keyword = params[3]
+ 
+ 
+diff --git a/scripts/follower_b1.py b/scripts/follower_b1.py
+index 72ee81f..6c73fa2 100644
+--- a/scripts/follower_b1.py
++++ b/scripts/follower_b1.py
+@@ -47,12 +47,12 @@ if __name__ == "__main__":
+ 
+         follower.send("msg7".encode())
+         time.sleep(1)
+-        cmd="sudo ./mb1.sh "+str(cores)
++        cmd="sudo ./b1.sh "+str(cores)
+         logging.info("start to execute: " + cmd)
+         os.system(cmd)
+         time.sleep(1)
+         follower2.send("msg8".encode())
+-        time.sleep(cores+30+10)
++        time.sleep(cores+30+30)
+     follower.close()
+     follower2.close()
+     os.system(killCommand)
+diff --git a/scripts/follower_b2.py b/scripts/follower_b2.py
+index 3746e8b..fac883a 100644
+--- a/scripts/follower_b2.py
++++ b/scripts/follower_b2.py
+@@ -35,10 +35,10 @@ if __name__ == "__main__":
+         logging.info("kill dbtest")
+         connection.send("msg5".encode())
+         connection.recv(1024) # received msg8
+-        cmd="sudo ./mb2.sh "+str(cores)
++        cmd="sudo ./b2.sh "+str(cores)
+         logging.info("start to execute: " + cmd)
+         os.system(cmd)
+-    time.sleep(maxCPU+30+10)
++    time.sleep(maxCPU+30+30)
+     connection.close()
+     server.close()
+     os.system(killCommand)
+diff --git a/scripts/leader_b.py b/scripts/leader_b.py
+index a48ee3e..9c1d2a2 100644
+--- a/scripts/leader_b.py
++++ b/scripts/leader_b.py
+@@ -37,10 +37,10 @@ if __name__ == "__main__":
+         logging.info("kill dbtest")
+         connection.send("msg6".encode())
+         connection.recv(1024) # received msg7
+-        cmd="sudo ./mb0.sh "+str(cores)
++        cmd="sudo ./b0.sh "+str(cores)
+         logging.info("start to execute: " + cmd)
+         os.system(cmd)
+-    time.sleep(maxCPU+30+10)
++    time.sleep(maxCPU+30+30)
+     connection.close()
+     server.close()
+     os.system(killCommand)
+diff --git a/third-party/paxos b/third-party/paxos
+--- a/third-party/paxos
++++ b/third-party/paxos
+@@ -1 +1 @@
+-Subproject commit c02d5cc671afb3ee2656866aa8ed99601a154d3f
++Subproject commit c02d5cc671afb3ee2656866aa8ed99601a154d3f-dirty

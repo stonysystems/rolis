@@ -1,0 +1,56 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 2
+ParID now : 1
+ParID now : 2
+--------------------
+Table Name= customer_0 ID= 10001
+Table Name= customer_1 ID= 10002
+Table Name= customer_name_idx_0 ID= 10003
+Table Name= customer_name_idx_1 ID= 10004
+Table Name= district_0 ID= 10005
+Table Name= district_1 ID= 10006
+Table Name= history_0 ID= 10007
+Table Name= history_1 ID= 10008
+Table Name= item ID= 10009
+Table Name= new_order_0 ID= 10010
+Table Name= new_order_1 ID= 10011
+Table Name= oorder_0 ID= 10012
+Table Name= oorder_1 ID= 10013
+Table Name= oorder_c_id_idx_0 ID= 10014
+Table Name= oorder_c_id_idx_1 ID= 10015
+Table Name= order_line_0 ID= 10016
+Table Name= order_line_1 ID= 10017
+Table Name= stock_0 ID= 10018
+Table Name= stock_1 ID= 10019
+Table Name= stock_data_0 ID= 10020
+Table Name= stock_data_1 ID= 10021
+Table Name= warehouse_0 ID= 10022
+Table Name= warehouse_1 ID= 10023
+mt_get: 31115351, mt_put: 9968162, mt_del: 78052, mt_scan: 1260757, mt_rscan: 62691, ht_get: 0, ht_put: 0, ht_insert: 0, ht_del: 0
+--------------------
+Info folder has been generated okay ----<<<<<<
+Total Delete Observed 0
+Total Submits 0
+155857.536067 155857.536067 0.012779 0.000000 10.995487 702369
+close handle all started
+close_all all ok
+-----------------------------
+Log generation statistic
+-----------------------------
+Sec  	   unix  	       	     	Average  
+Spent	timestamp	entries	Bytes	Entry Size
+-----------------------------
+0	1608417086	129	41	2658
+1	1608417087	62526	4009	525
+2	1608417088	93958	13627	1188
+3	1608417089	157248	20218	1053
+4	1608417090	158591	20591	1063
+5	1608417091	157858	20369	1057
+6	1608417092	157736	20403	1059
+7	1608417093	156783	20375	1064
+8	1608417094	156885	20434	1067
+9	1608417095	156007	20058	1053
+10	1608417096	155359	19973	1053
+11	1608417097	155327	20091	1059
+12	1608417098	54411	7055	1062

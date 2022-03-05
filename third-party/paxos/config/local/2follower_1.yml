@@ -1,0 +1,109 @@
+site:
+  server: # each line is a partition, the first is the master site_name:port
+    - ["s101:8001", "s201:8101", "s301:8201"]
+
+process:
+  s101: localhost
+  s102: localhost
+  s103: localhost
+  s104: localhost
+  s105: localhost
+  s106: localhost
+  s107: localhost
+  s108: localhost
+  s109: localhost
+  s110: localhost
+  s111: localhost
+  s112: localhost
+  s113: localhost
+  s114: localhost
+  s115: localhost
+  s116: localhost
+  s117: localhost
+  s118: localhost
+  s119: localhost
+  s120: localhost
+  s121: localhost
+  s122: localhost
+  s123: localhost
+  s124: localhost
+  s125: localhost
+  s126: localhost
+  s127: localhost
+  s128: localhost
+  s129: localhost
+  s130: localhost
+  s131: localhost
+  s132: localhost
+
+  s201: p1
+  s202: p1
+  s203: p1
+  s204: p1
+  s205: p1
+  s206: p1
+  s207: p1
+  s208: p1
+  s209: p1
+  s210: p1
+  s211: p1
+  s212: p1
+  s213: p1
+  s214: p1
+  s215: p1
+  s216: p1
+  s217: p1
+  s218: p1
+  s219: p1
+  s220: p1
+  s221: p1
+  s222: p1
+  s223: p1
+  s224: p1
+  s225: p1
+  s226: p1
+  s227: p1
+  s228: p1
+  s229: p1
+  s230: p1
+  s231: p1
+  s232: p1
+
+  s301: p2
+  s302: p2
+  s303: p2
+  s304: p2
+  s305: p2
+  s306: p2
+  s307: p2
+  s308: p2
+  s309: p2
+  s310: p2
+  s311: p2
+  s312: p2
+  s313: p2
+  s314: p2
+  s315: p2
+  s316: p2
+  s317: p2
+  s318: p2
+  s319: p2
+  s320: p2
+  s321: p2
+  s322: p2
+  s323: p2
+  s324: p2
+  s325: p2
+  s326: p2
+  s327: p2
+  s328: p2
+  s329: p2
+  s330: p2
+  s331: p2
+  s332: p2
+
+# process_name - host_addr map
+host:
+  localhost: 127.0.0.1
+  p1: 127.0.0.1
+  p2: 127.0.0.1

@@ -1,0 +1,77 @@
+#
+# host machine
+#   physical process as container  
+#     logical site as a thread
+# site --> process --> host
+#   
+# site: logical site (either as server/coordinator), which lives in a thread (may share thread 
+# process 
+# host is  
+client:
+    type: closed # { open, closed }
+    rate: 1000 # only used for open clients -- units are txn/s
+
+# site - partition map
+site:
+  server: # each line is a partition, the first is the master site_name:port
+    - ["s101:8101"]
+    - ["s201:8102"]
+    - ["s301:8103"]
+  client: # each line is a partition
+    - ["c1"]
+
+# site_name - process_name map
+process:
+  s101: localhost
+  s201: localhost
+  s301: localhost
+  c1: localhost
+
+# process_name - host_addr map
+host:
+  localhost: 127.0.0.1
+
+mode:
+  cc: 2pl_ww # concurrency control
+  ab: paxos # atomic broadcast
+  read_only: occ
+  batch: false
+  retry: 0
+  ongoing: 1 # per client
+
+
+bench:
+  workload: tpca
+  scale: 1
+  weight:
+    read: 0
+    write: 1
+  population: # intial number of records in each table
+    branch:   100000
+    teller:   100000
+    customer: 100000
+  dist: uniform 
+  coefficient: 1 # 0 as unifrom, 1 as pure zipf
+
+schema:
+  - name: branch
+    column:
+      - {name: branch_id,   type: integer, primary: true} 
+      - {name: balance,     type: integer} 
+  - name: teller
+    column:
+      - {name: teller_id,   type: integer, primary: true}
+        #      - {name: branch_id,   type: integer, foreign: branch.branch_id }
+      - {name: balance,     type: integer} 
+  - name: customer
+    column:
+      - {name: customer_id, type: integer, primary: true}
+        #      - {name: branch_id,   type: integer, foreign: branch.branch_id}
+      - {name: balance,     type: integer}
+
+sharding:
+  teller:   MOD
+  branch:   MOD
+  customer: MOD
+
+n_concurrent: 1

@@ -1,0 +1,146 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 9
+ParID now : 1
+ParID now : 2
+ParID now : 3
+ParID now : ParID now : 5
+5
+ParID now : 6
+ParID now : 7
+ParID now : 8
+ParID now : 9
+--------------------
+Table Name= customer_0 ID= 10001
+Table Name= customer_1 ID= 10002
+Table Name= customer_2 ID= 10003
+Table Name= customer_3 ID= 10004
+Table Name= customer_4 ID= 10005
+Table Name= customer_5 ID= 10006
+Table Name= customer_6 ID= 10007
+Table Name= customer_7 ID= 10008
+Table Name= customer_8 ID= 10009
+Table Name= customer_name_idx_0 ID= 10010
+Table Name= customer_name_idx_1 ID= 10011
+Table Name= customer_name_idx_2 ID= 10012
+Table Name= customer_name_idx_3 ID= 10013
+Table Name= customer_name_idx_4 ID= 10014
+Table Name= customer_name_idx_5 ID= 10015
+Table Name= customer_name_idx_6 ID= 10016
+Table Name= customer_name_idx_7 ID= 10017
+Table Name= customer_name_idx_8 ID= 10018
+Table Name= district_0 ID= 10019
+Table Name= district_1 ID= 10020
+Table Name= district_2 ID= 10021
+Table Name= district_3 ID= 10022
+Table Name= district_4 ID= 10023
+Table Name= district_5 ID= 10024
+Table Name= district_6 ID= 10025
+Table Name= district_7 ID= 10026
+Table Name= district_8 ID= 10027
+Table Name= history_0 ID= 10028
+Table Name= history_1 ID= 10029
+Table Name= history_2 ID= 10030
+Table Name= history_3 ID= 10031
+Table Name= history_4 ID= 10032
+Table Name= history_5 ID= 10033
+Table Name= history_6 ID= 10034
+Table Name= history_7 ID= 10035
+Table Name= history_8 ID= 10036
+Table Name= item ID= 10037
+Table Name= new_order_0 ID= 10038
+Table Name= new_order_1 ID= 10039
+Table Name= new_order_2 ID= 10040
+Table Name= new_order_3 ID= 10041
+Table Name= new_order_4 ID= 10042
+Table Name= new_order_5 ID= 10043
+Table Name= new_order_6 ID= 10044
+Table Name= new_order_7 ID= 10045
+Table Name= new_order_8 ID= 10046
+Table Name= oorder_0 ID= 10047
+Table Name= oorder_1 ID= 10048
+Table Name= oorder_2 ID= 10049
+Table Name= oorder_3 ID= 10050
+Table Name= oorder_4 ID= 10051
+Table Name= oorder_5 ID= 10052
+Table Name= oorder_6 ID= 10053
+Table Name= oorder_7 ID= 10054
+Table Name= oorder_8 ID= 10055
+Table Name= oorder_c_id_idx_0 ID= 10056
+Table Name= oorder_c_id_idx_1 ID= 10057
+Table Name= oorder_c_id_idx_2 ID= 10058
+Table Name= oorder_c_id_idx_3 ID= 10059
+Table Name= oorder_c_id_idx_4 ID= 10060
+Table Name= oorder_c_id_idx_5 ID= 10061
+Table Name= oorder_c_id_idx_6 ID= 10062
+Table Name= oorder_c_id_idx_7 ID= 10063
+Table Name= oorder_c_id_idx_8 ID= 10064
+Table Name= order_line_0 ID= 10065
+Table Name= order_line_1 ID= 10066
+Table Name= order_line_2 ID= 10067
+Table Name= order_line_3 ID= 10068
+Table Name= order_line_4 ID= 10069
+Table Name= order_line_5 ID= 10070
+Table Name= order_line_6 ID= 10071
+Table Name= order_line_7 ID= 10072
+Table Name= order_line_8 ID= 10073
+Table Name= stock_0 ID= 10074
+Table Name= stock_1 ID= 10075
+Table Name= stock_2 ID= 10076
+Table Name= stock_3 ID= 10077
+Table Name= stock_4 ID= 10078
+Table Name= stock_5 ID= 10079
+Table Name= stock_6 ID= 10080
+Table Name= stock_7 ID= 10081
+Table Name= stock_8 ID= 10082
+Table Name= stock_data_0 ID= 10083
+Table Name= stock_data_1 ID= 10084
+Table Name= stock_data_2 ID= 10085
+Table Name= stock_data_3 ID= 10086
+Table Name= stock_data_4 ID= 10087
+Table Name= stock_data_5 ID= 10088
+Table Name= stock_data_6 ID= 10089
+Table Name= stock_data_7 ID= 10090
+Table Name= stock_data_8 ID= 10091
+Table Name= warehouse_0 ID= 10092
+Table Name= warehouse_1 ID= 10093
+Table Name= warehouse_2 ID= 10094
+Table Name= warehouse_3 ID= 10095
+Table Name= warehouse_4 ID= 10096
+Table Name= warehouse_5 ID= 10097
+Table Name= warehouse_6 ID= 10098
+Table Name= warehouse_7 ID= 10099
+Table Name= warehouse_8 ID= 10100
+mt_get: 50849723, mt_put: 16920516, mt_del: 174986, mt_scan: 2123285, mt_rscan: 102565, ht_get: 0, ht_put: 0, ht_insert: 0, ht_del: 0
+--------------------
+Info folder has been generated okay ----<<<<<<
+Total Delete Observed 0
+Total Submits 0
+170630.803935 170630.803935 0.052640 0.000000 14.727775 1152411
+close handle all started
+close_all all ok
+-----------------------------
+Log generation statistic
+-----------------------------
+Sec  	   unix  	       	     	Average  
+Spent	timestamp	entries	Bytes	Entry Size
+-----------------------------
+0	1608417629	326	106	2684
+1	1608417630	146907	9802	546
+2	1608417631	135247	9880	598
+3	1608417632	138694	20788	1227
+4	1608417633	168899	23097	1120
+5	1608417634	172427	22161	1052
+6	1608417635	171788	22124	1055
+7	1608417636	171093	21974	1052
+8	1608417637	172337	22133	1052
+9	1608417638	172135	22213	1057
+10	1608417639	172454	22281	1058
+11	1608417640	170550	21832	1048
+12	1608417641	171812	22203	1058
+13	1608417642	172200	22375	1064
+14	1608417643	172662	22074	1047
+15	1608417644	171517	22147	1057
+16	1608417645	172368	22239	1056
+17	1608417646	172499	22379	1062
+18	1608417647	17216	2198	1045

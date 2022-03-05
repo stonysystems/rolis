@@ -1,0 +1,32 @@
+total size of logs: 3895.74 MB, # of entries:151295724
+Thread Thread 1 gets started, coreid: 0 gets started, coreid: 01, offset: , offset: 2917845990
+
+Thread 2 gets started, coreid: 2, offset: 583569198
+Thread 3 gets started, coreid: 3, offset: 875353797
+Thread 4 gets started, coreid: 4, offset: 1167138396
+Thread 5 gets started, coreid: 5, offset: 1458922995
+Thread 6 gets started, coreid: 6, offset: 1750707594
+Thread 7 gets started, coreid: 7, offset: 2042492193
+Thread 8 gets started, coreid: 8, offset: 2334276792
+Thread 9 gets started, coreid: 9, offset: 2626061391
+Thread 10 gets started, coreid: 10, offset: 2917845990
+Thread 11 gets started, coreid: 11, offset: 3209630589
+Thread 12 gets started, coreid: 12, offset: 3501415188
+Thread 13 gets started, coreid: 13, offset: 3793199787
+[cost of second: 3.007, # of PUTs: 10827945]Thread: 0, coreid: 0 is completed!
+[cost of second: 3.763, # of PUTs: 10827945]Thread: 1, coreid: 1 is completed!
+[cost of second: 3.86, # of PUTs: 10827945]Thread: 8, coreid: 8 is completed!
+[cost of second: 3.867, # of PUTs: 10827945]Thread: 11, coreid: 11 is completed!
+[cost of second: 3.873, # of PUTs: 10827945]Thread: 10, coreid: 10 is completed!
+[cost of second: 3.874, # of PUTs: 10827945]Thread: 12, coreid: 12 is completed!
+[cost of second: 3.879, # of PUTs: 10827945]Thread: 9, coreid: 9 is completed!
+[cost of second: 3.875, # of PUTs: 10827951]Thread: 13, coreid: 13 is completed!
+[cost of second: 3.901, # of PUTs: 10827945]Thread: 6, coreid: 6 is completed!
+[cost of second: 3.911, # of PUTs: 10827945]Thread: 2, coreid: 2 is completed!
+[cost of second: 3.928, # of PUTs: 10827945]Thread: 7, coreid: 7 is completed!
+[cost of second: 3.961, # of PUTs: 10827945]Thread: 3, coreid: 3 is completed!
+[cost of second: 4, # of PUTs: 10827945]Thread: 4, coreid: 4 is completed!
+[cost of second: 4.016, # of PUTs: 10827945]Thread: 5, coreid: 5 is completed!
+Time Taken : 4018 millis
+Replay Exec Spent 4.0183 sec for txns: 4040494
+Throughput : 1.00552e+06 ops/sec

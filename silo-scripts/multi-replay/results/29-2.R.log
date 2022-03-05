@@ -1,0 +1,62 @@
+total size of logs: 5346.66 MB, # of entries:207643841
+Thread Thread 0 gets started, coreid: 10, offset:  gets started, coreid: 1, offset: 193323564
+0
+Thread 2 gets started, coreid: 2, offset: 386647128
+Thread 3 gets started, coreid: 3, offset: 579970692
+Thread 4 gets started, coreid: 4, offset: 773294256
+Thread 5 gets started, coreid: 5, offset: 966617820
+Thread 6 gets started, coreid: 6, offset: 1159941384
+Thread 7 gets started, coreid: 7, offset: 1353264948
+Thread 8 gets started, coreid: 8, offset: 1546588512
+Thread 9 gets started, coreid: 9, offset: 1739912076
+Thread 10 gets started, coreid: 10, offset: 1933235640
+Thread 11 gets started, coreid: 11, offset: 2126559204
+Thread 12 gets started, coreid: 12, offset: 2319882768
+Thread 13 gets started, coreid: 13, offset: 2513206332
+Thread 14 gets started, coreid: 14, offset: 2706529896
+Thread 15 gets started, coreid: 15, offset: 2899853460
+Thread 16 gets started, coreid: 16, offset: 3093177024
+Thread 17 gets started, coreid: 17, offset: 3286500588
+Thread 18 gets started, coreid: 18, offset: 3479824152
+Thread 19 gets started, coreid: 19, offset: 3673147716
+Thread 20 gets started, coreid: 20, offset: 3866471280
+Thread 21 gets started, coreid: 21, offset: 4059794844
+Thread 22 gets started, coreid: 22, offset: 4253118408
+Thread 23 gets started, coreid: 23, offset: 4446441972
+Thread 24 gets started, coreid: 24, offset: 4639765536
+Thread 25 gets started, coreid: 25, offset: 4833089100
+Thread 26 gets started, coreid: 26, offset: 5026412664
+Thread 27 gets started, coreid: 27, offset: 5219736228
+Thread 28 gets started, coreid: 28, offset: 5413059792
+[cost of second: 2.017, # of PUTs: 7174130]Thread: 28, coreid: 28 is completed!
+[cost of second: 2.099, # of PUTs: 7174117]Thread: 1, coreid: 1 is completed!
+[cost of second: 2.101, # of PUTs: 7174117]Thread: 0, coreid: 0 is completed!
+[cost of second: 2.295, # of PUTs: 7174117]Thread: 2, coreid: 2 is completed!
+[cost of second: 2.593, # of PUTs: 7174117]Thread: 24, coreid: 24 is completed!
+[cost of second: 2.596, # of PUTs: 7174117]Thread: 25, coreid: 25 is completed!
+[cost of second: 2.605, # of PUTs: 7174117]Thread: 26, coreid: 26 is completed!
+[cost of second: 2.614, # of PUTs: 7174117]Thread: 27, coreid: 27 is completed!
+[cost of second: 2.652, # of PUTs: 7174117]Thread: 3, coreid: 3 is completed!
+[cost of second: 2.745, # of PUTs: 7174117]Thread: 4, coreid: 4 is completed!
+[cost of second: 2.737, # of PUTs: 7174117]Thread: 20, coreid: 20 is completed!
+[cost of second: 2.736, # of PUTs: 7174117]Thread: 22, coreid: [cost of second: 22 is completed!
+2.736, # of PUTs: 7174117]Thread: 23, coreid: 23 is completed!
+[cost of second: 2.741, # of PUTs: 7174117]Thread: 21, coreid: 21 is completed!
+[cost of second: 2.749, # of PUTs: 7174117]Thread: 19, coreid: 19 is completed!
+[cost of second: 2.765, # of PUTs: 7174117]Thread: 5, coreid: 5 is completed!
+[cost of second: 2.759, # of PUTs: 7174117]Thread: 16, coreid: 16 is completed!
+[cost of second: 2.768, # of PUTs: 7174117]Thread: 11, coreid: 11 is completed!
+[cost of second: 2.764, # of PUTs: 7174117]Thread: 18, coreid: 18 is completed!
+[cost of second: 2.772, # of PUTs: 7174117]Thread: 17, coreid: 17 is completed!
+[cost of second: 2.784, # of PUTs: 7174117]Thread: 12, coreid: 12 is completed!
+[cost of second: 2.788, # of PUTs: 7174117]Thread: 13, coreid: 13 is completed!
+[cost of second: 2.799, # of PUTs: 7174117]Thread: 6, coreid: 6 is completed!
+[cost of second: 2.809, # of PUTs: 7174117]Thread: 7, coreid: 7 is completed!
+[cost of second: 2.804, # of PUTs: 7174117]Thread: 15, coreid: 15 is completed!
+[cost of second: 2.82, # of PUTs: 7174117]Thread: 14, coreid: 14 is completed!
+[cost of second: 2.828, # of PUTs: 7174117]Thread: 10, coreid: 10 is completed!
+[cost of second: 2.886, # of PUTs: 7174117]Thread: 8, coreid: 8 is completed!
+[cost of second: 2.898, # of PUTs: 7174117]Thread: 9, coreid: 9 is completed!
+Time Taken : 2905 millis
+Replay Exec Spent 2.90564 sec for txns: 5642665
+Throughput : 1.94197e+06 ops/sec

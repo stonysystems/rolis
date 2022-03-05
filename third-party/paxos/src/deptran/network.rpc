@@ -1,0 +1,17 @@
+namespace network_client;
+
+abstract service NetworkClient {
+    // fast or defer
+    // a | b in the parameter
+    // structured data
+
+    defer txn_rmw(vector<int32_t> _req);
+    defer txn_read(vector<int32_t> _req);
+
+    // five transaction categories
+    defer txn_new_order(vector<int32_t> _req);
+    defer txn_payment(vector<int32_t> _req);
+    defer txn_delivery(vector<int32_t> _req);
+    defer txn_order_status(vector<int32_t> _req);
+    defer txn_stock_level(vector<int32_t> _req);
+}

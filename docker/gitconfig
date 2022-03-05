@@ -1,0 +1,16 @@
+[user]
+    name = ubuntu
+    email = ubuntu@example.com
+[color]
+    status = auto
+    branch = auto
+    interactive = auto
+    diff = auto
+[alias]
+    freebase = pull --rebase
+    commit = commit -a -v
+    ci = commit
+    co = checkout
+    b = branch
+    nb = checkout -b
+    st = status

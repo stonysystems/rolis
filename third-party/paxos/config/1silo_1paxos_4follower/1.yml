@@ -1,0 +1,22 @@
+site:
+  server: # each line is a partition, the first is the master site_name:port
+    - ["s101:8001", "s201:8101", "s301:8201", "s401:8301", "s501:8401"]
+
+process:
+  s101: localhost
+
+  s201: p1
+
+  s301: p2
+
+  s401: p3
+
+  s501: p4
+
+# process_name - host_addr map
+host:
+  localhost: 10.1.0.7 
+  p1: 10.1.0.8
+  p2: 10.1.0.9
+  p3: 10.1.0.72
+  p4: 10.1.0.73

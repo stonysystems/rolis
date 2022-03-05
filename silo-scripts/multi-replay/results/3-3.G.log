@@ -1,0 +1,68 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 3
+ParID now : 1
+ParID now : 2
+ParID now : 3
+--------------------
+Table Name= customer_0 ID= 10001
+Table Name= customer_1 ID= 10002
+Table Name= customer_2 ID= 10003
+Table Name= customer_name_idx_0 ID= 10004
+Table Name= customer_name_idx_1 ID= 10005
+Table Name= customer_name_idx_2 ID= 10006
+Table Name= district_0 ID= 10007
+Table Name= district_1 ID= 10008
+Table Name= district_2 ID= 10009
+Table Name= history_0 ID= 10010
+Table Name= history_1 ID= 10011
+Table Name= history_2 ID= 10012
+Table Name= item ID= 10013
+Table Name= new_order_0 ID= 10014
+Table Name= new_order_1 ID= 10015
+Table Name= new_order_2 ID= 10016
+Table Name= oorder_0 ID= 10017
+Table Name= oorder_1 ID= 10018
+Table Name= oorder_2 ID= 10019
+Table Name= oorder_c_id_idx_0 ID= 10020
+Table Name= oorder_c_id_idx_1 ID= 10021
+Table Name= oorder_c_id_idx_2 ID= 10022
+Table Name= order_line_0 ID= 10023
+Table Name= order_line_1 ID= 10024
+Table Name= order_line_2 ID= 10025
+Table Name= stock_0 ID= 10026
+Table Name= stock_1 ID= 10027
+Table Name= stock_2 ID= 10028
+Table Name= stock_data_0 ID= 10029
+Table Name= stock_data_1 ID= 10030
+Table Name= stock_data_2 ID= 10031
+Table Name= warehouse_0 ID= 10032
+Table Name= warehouse_1 ID= 10033
+Table Name= warehouse_2 ID= 10034
+mt_get: 38989133, mt_put: 12570543, mt_del: 102548, mt_scan: 1593162, mt_rscan: 78309, ht_get: 0, ht_put: 0, ht_insert: 0, ht_del: 0
+--------------------
+Info folder has been generated okay ----<<<<<<
+Total Delete Observed 0
+Total Submits 0
+195737.097739 195737.097739 0.015267 0.000000 14.492936 881720
+close handle all started
+close_all all ok
+-----------------------------
+Log generation statistic
+-----------------------------
+Sec  	   unix  	       	     	Average  
+Spent	timestamp	entries	Bytes	Entry Size
+-----------------------------
+0	1608417182	174	56	2669
+1	1608417183	93837	6213	542
+2	1608417184	137043	19662	1175
+3	1608417185	191355	24754	1059
+4	1608417186	193635	24930	1054
+5	1608417187	196220	25308	1056
+6	1608417188	198677	25592	1055
+7	1608417189	198221	25559	1056
+8	1608417190	199827	25838	1059
+9	1608417191	198115	25762	1065
+10	1608417192	198122	25514	1054
+11	1608417193	198344	25431	1050
+12	1608417194	49658	6307	1040

@@ -1,0 +1,325 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 23
+ParID now : 1
+ParID now : 2
+ParID now : 4
+ParID now : 4
+ParID now : 5
+ParID now : 6
+ParID now : 7
+ParID now : 8
+ParID now : 9
+ParID now : 10
+ParID now : 11
+ParID now : 12
+ParID now : 13
+ParID now : 14
+ParID now : 15
+ParID now : 16
+ParID now : 17
+ParID now : 18
+ParID now : 19
+ParID now : ParID now : 21
+21ParID now : 22
+
+ParID now : 23
+--------------------
+Table Name= customer_0 ID= 10001
+Table Name= customer_1 ID= 10002
+Table Name= customer_10 ID= 10011
+Table Name= customer_11 ID= 10012
+Table Name= customer_12 ID= 10013
+Table Name= customer_13 ID= 10014
+Table Name= customer_14 ID= 10015
+Table Name= customer_15 ID= 10016
+Table Name= customer_16 ID= 10017
+Table Name= customer_17 ID= 10018
+Table Name= customer_18 ID= 10019
+Table Name= customer_19 ID= 10020
+Table Name= customer_2 ID= 10003
+Table Name= customer_20 ID= 10021
+Table Name= customer_21 ID= 10022
+Table Name= customer_22 ID= 10023
+Table Name= customer_3 ID= 10004
+Table Name= customer_4 ID= 10005
+Table Name= customer_5 ID= 10006
+Table Name= customer_6 ID= 10007
+Table Name= customer_7 ID= 10008
+Table Name= customer_8 ID= 10009
+Table Name= customer_9 ID= 10010
+Table Name= customer_name_idx_0 ID= 10024
+Table Name= customer_name_idx_1 ID= 10025
+Table Name= customer_name_idx_10 ID= 10034
+Table Name= customer_name_idx_11 ID= 10035
+Table Name= customer_name_idx_12 ID= 10036
+Table Name= customer_name_idx_13 ID= 10037
+Table Name= customer_name_idx_14 ID= 10038
+Table Name= customer_name_idx_15 ID= 10039
+Table Name= customer_name_idx_16 ID= 10040
+Table Name= customer_name_idx_17 ID= 10041
+Table Name= customer_name_idx_18 ID= 10042
+Table Name= customer_name_idx_19 ID= 10043
+Table Name= customer_name_idx_2 ID= 10026
+Table Name= customer_name_idx_20 ID= 10044
+Table Name= customer_name_idx_21 ID= 10045
+Table Name= customer_name_idx_22 ID= 10046
+Table Name= customer_name_idx_3 ID= 10027
+Table Name= customer_name_idx_4 ID= 10028
+Table Name= customer_name_idx_5 ID= 10029
+Table Name= customer_name_idx_6 ID= 10030
+Table Name= customer_name_idx_7 ID= 10031
+Table Name= customer_name_idx_8 ID= 10032
+Table Name= customer_name_idx_9 ID= 10033
+Table Name= district_0 ID= 10047
+Table Name= district_1 ID= 10048
+Table Name= district_10 ID= 10057
+Table Name= district_11 ID= 10058
+Table Name= district_12 ID= 10059
+Table Name= district_13 ID= 10060
+Table Name= district_14 ID= 10061
+Table Name= district_15 ID= 10062
+Table Name= district_16 ID= 10063
+Table Name= district_17 ID= 10064
+Table Name= district_18 ID= 10065
+Table Name= district_19 ID= 10066
+Table Name= district_2 ID= 10049
+Table Name= district_20 ID= 10067
+Table Name= district_21 ID= 10068
+Table Name= district_22 ID= 10069
+Table Name= district_3 ID= 10050
+Table Name= district_4 ID= 10051
+Table Name= district_5 ID= 10052
+Table Name= district_6 ID= 10053
+Table Name= district_7 ID= 10054
+Table Name= district_8 ID= 10055
+Table Name= district_9 ID= 10056
+Table Name= history_0 ID= 10070
+Table Name= history_1 ID= 10071
+Table Name= history_10 ID= 10080
+Table Name= history_11 ID= 10081
+Table Name= history_12 ID= 10082
+Table Name= history_13 ID= 10083
+Table Name= history_14 ID= 10084
+Table Name= history_15 ID= 10085
+Table Name= history_16 ID= 10086
+Table Name= history_17 ID= 10087
+Table Name= history_18 ID= 10088
+Table Name= history_19 ID= 10089
+Table Name= history_2 ID= 10072
+Table Name= history_20 ID= 10090
+Table Name= history_21 ID= 10091
+Table Name= history_22 ID= 10092
+Table Name= history_3 ID= 10073
+Table Name= history_4 ID= 10074
+Table Name= history_5 ID= 10075
+Table Name= history_6 ID= 10076
+Table Name= history_7 ID= 10077
+Table Name= history_8 ID= 10078
+Table Name= history_9 ID= 10079
+Table Name= item ID= 10093
+Table Name= new_order_0 ID= 10094
+Table Name= new_order_1 ID= 10095
+Table Name= new_order_10 ID= 10104
+Table Name= new_order_11 ID= 10105
+Table Name= new_order_12 ID= 10106
+Table Name= new_order_13 ID= 10107
+Table Name= new_order_14 ID= 10108
+Table Name= new_order_15 ID= 10109
+Table Name= new_order_16 ID= 10110
+Table Name= new_order_17 ID= 10111
+Table Name= new_order_18 ID= 10112
+Table Name= new_order_19 ID= 10113
+Table Name= new_order_2 ID= 10096
+Table Name= new_order_20 ID= 10114
+Table Name= new_order_21 ID= 10115
+Table Name= new_order_22 ID= 10116
+Table Name= new_order_3 ID= 10097
+Table Name= new_order_4 ID= 10098
+Table Name= new_order_5 ID= 10099
+Table Name= new_order_6 ID= 10100
+Table Name= new_order_7 ID= 10101
+Table Name= new_order_8 ID= 10102
+Table Name= new_order_9 ID= 10103
+Table Name= oorder_0 ID= 10117
+Table Name= oorder_1 ID= 10118
+Table Name= oorder_10 ID= 10127
+Table Name= oorder_11 ID= 10128
+Table Name= oorder_12 ID= 10129
+Table Name= oorder_13 ID= 10130
+Table Name= oorder_14 ID= 10131
+Table Name= oorder_15 ID= 10132
+Table Name= oorder_16 ID= 10133
+Table Name= oorder_17 ID= 10134
+Table Name= oorder_18 ID= 10135
+Table Name= oorder_19 ID= 10136
+Table Name= oorder_2 ID= 10119
+Table Name= oorder_20 ID= 10137
+Table Name= oorder_21 ID= 10138
+Table Name= oorder_22 ID= 10139
+Table Name= oorder_3 ID= 10120
+Table Name= oorder_4 ID= 10121
+Table Name= oorder_5 ID= 10122
+Table Name= oorder_6 ID= 10123
+Table Name= oorder_7 ID= 10124
+Table Name= oorder_8 ID= 10125
+Table Name= oorder_9 ID= 10126
+Table Name= oorder_c_id_idx_0 ID= 10140
+Table Name= oorder_c_id_idx_1 ID= 10141
+Table Name= oorder_c_id_idx_10 ID= 10150
+Table Name= oorder_c_id_idx_11 ID= 10151
+Table Name= oorder_c_id_idx_12 ID= 10152
+Table Name= oorder_c_id_idx_13 ID= 10153
+Table Name= oorder_c_id_idx_14 ID= 10154
+Table Name= oorder_c_id_idx_15 ID= 10155
+Table Name= oorder_c_id_idx_16 ID= 10156
+Table Name= oorder_c_id_idx_17 ID= 10157
+Table Name= oorder_c_id_idx_18 ID= 10158
+Table Name= oorder_c_id_idx_19 ID= 10159
+Table Name= oorder_c_id_idx_2 ID= 10142
+Table Name= oorder_c_id_idx_20 ID= 10160
+Table Name= oorder_c_id_idx_21 ID= 10161
+Table Name= oorder_c_id_idx_22 ID= 10162
+Table Name= oorder_c_id_idx_3 ID= 10143
+Table Name= oorder_c_id_idx_4 ID= 10144
+Table Name= oorder_c_id_idx_5 ID= 10145
+Table Name= oorder_c_id_idx_6 ID= 10146
+Table Name= oorder_c_id_idx_7 ID= 10147
+Table Name= oorder_c_id_idx_8 ID= 10148
+Table Name= oorder_c_id_idx_9 ID= 10149
+Table Name= order_line_0 ID= 10163
+Table Name= order_line_1 ID= 10164
+Table Name= order_line_10 ID= 10173
+Table Name= order_line_11 ID= 10174
+Table Name= order_line_12 ID= 10175
+Table Name= order_line_13 ID= 10176
+Table Name= order_line_14 ID= 10177
+Table Name= order_line_15 ID= 10178
+Table Name= order_line_16 ID= 10179
+Table Name= order_line_17 ID= 10180
+Table Name= order_line_18 ID= 10181
+Table Name= order_line_19 ID= 10182
+Table Name= order_line_2 ID= 10165
+Table Name= order_line_20 ID= 10183
+Table Name= order_line_21 ID= 10184
+Table Name= order_line_22 ID= 10185
+Table Name= order_line_3 ID= 10166
+Table Name= order_line_4 ID= 10167
+Table Name= order_line_5 ID= 10168
+Table Name= order_line_6 ID= 10169
+Table Name= order_line_7 ID= 10170
+Table Name= order_line_8 ID= 10171
+Table Name= order_line_9 ID= 10172
+Table Name= stock_0 ID= 10186
+Table Name= stock_1 ID= 10187
+Table Name= stock_10 ID= 10196
+Table Name= stock_11 ID= 10197
+Table Name= stock_12 ID= 10198
+Table Name= stock_13 ID= 10199
+Table Name= stock_14 ID= 10200
+Table Name= stock_15 ID= 10201
+Table Name= stock_16 ID= 10202
+Table Name= stock_17 ID= 10203
+Table Name= stock_18 ID= 10204
+Table Name= stock_19 ID= 10205
+Table Name= stock_2 ID= 10188
+Table Name= stock_20 ID= 10206
+Table Name= stock_21 ID= 10207
+Table Name= stock_22 ID= 10208
+Table Name= stock_3 ID= 10189
+Table Name= stock_4 ID= 10190
+Table Name= stock_5 ID= 10191
+Table Name= stock_6 ID= 10192
+Table Name= stock_7 ID= 10193
+Table Name= stock_8 ID= 10194
+Table Name= stock_9 ID= 10195
+Table Name= stock_data_0 ID= 10209
+Table Name= stock_data_1 ID= 10210
+Table Name= stock_data_10 ID= 10219
+Table Name= stock_data_11 ID= 10220
+Table Name= stock_data_12 ID= 10221
+Table Name= stock_data_13 ID= 10222
+Table Name= stock_data_14 ID= 10223
+Table Name= stock_data_15 ID= 10224
+Table Name= stock_data_16 ID= 10225
+Table Name= stock_data_17 ID= 10226
+Table Name= stock_data_18 ID= 10227
+Table Name= stock_data_19 ID= 10228
+Table Name= stock_data_2 ID= 10211
+Table Name= stock_data_20 ID= 10229
+Table Name= stock_data_21 ID= 10230
+Table Name= stock_data_22 ID= 10231
+Table Name= stock_data_3 ID= 10212
+Table Name= stock_data_4 ID= 10213
+Table Name= stock_data_5 ID= 10214
+Table Name= stock_data_6 ID= 10215
+Table Name= stock_data_7 ID= 10216
+Table Name= stock_data_8 ID= 10217
+Table Name= stock_data_9 ID= 10218
+Table Name= warehouse_0 ID= 10232
+Table Name= warehouse_1 ID= 10233
+Table Name= warehouse_10 ID= 10242
+Table Name= warehouse_11 ID= 10243
+Table Name= warehouse_12 ID= 10244
+Table Name= warehouse_13 ID= 10245
+Table Name= warehouse_14 ID= 10246
+Table Name= warehouse_15 ID= 10247
+Table Name= warehouse_16 ID= 10248
+Table Name= warehouse_17 ID= 10249
+Table Name= warehouse_18 ID= 10250
+Table Name= warehouse_19 ID= 10251
+Table Name= warehouse_2 ID= 10234
+Table Name= warehouse_20 ID= 10252
+Table Name= warehouse_21 ID= 10253
+Table Name= warehouse_22 ID= 10254
+Table Name= warehouse_3 ID= 10235
+Table Name= warehouse_4 ID= 10236
+Table Name= warehouse_5 ID= 10237
+Table Name= warehouse_6 ID= 10238
+Table Name= warehouse_7 ID= 10239
+Table Name= warehouse_8 ID= 10240
+Table Name= warehouse_9 ID= 10241
+mt_get: 81093493, mt_put: 27824198, mt_del: 349309, mt_scan: 3459741, mt_rscan: 164287, ht_get: 0, ht_put: 0, ht_insert: 0, ht_del: 0
+--------------------
+Info folder has been generated okay ----<<<<<<
+Total Delete Observed 0
+Total Submits 0
+163271.814712 163271.814712 0.140734 0.000000 14.634534 1836524
+close handle all started
+close_all all ok
+-----------------------------
+Log generation statistic
+-----------------------------
+Sec  	   unix  	       	     	Average  
+Spent	timestamp	entries	Bytes	Entry Size
+-----------------------------
+0	1608418969	55010	6862	1022
+1	1608418970	133535	18440	1131
+2	1608418971	231025	12895	457
+3	1608418972	261234	10607	332
+4	1608418973	163588	20009	1002
+5	1608418974	152270	22631	1217
+6	1608418975	148604	22277	1228
+7	1608418976	152242	21499	1156
+8	1608418977	164190	21041	1049
+9	1608418978	166097	21138	1042
+10	1608418979	164848	21128	1049
+11	1608418980	166398	21182	1042
+12	1608418981	162892	20959	1054
+13	1608418982	165630	21145	1045
+14	1608418983	165592	21175	1047
+15	1608418984	166610	21413	1052
+16	1608418985	166498	21400	1052
+17	1608418986	165031	21369	1060
+18	1608418987	166815	21522	1056
+19	1608418988	166436	21365	1051
+20	1608418989	164420	21075	1050
+21	1608418990	165968	21457	1059
+22	1608418991	165995	21185	1045
+23	1608418992	165390	21203	1050
+24	1608418993	165178	21020	1042
+25	1608418994	165641	21446	1060
+26	1608418995	165938	21202	1046
+27	1608418996	164113	21003	1048
+28	1608418997	165870	21136	1043
+29	1608418998	31167	3989	1048

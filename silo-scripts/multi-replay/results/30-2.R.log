@@ -1,0 +1,64 @@
+total size of logs: 5386.43 MB, # of entries:209188329
+Thread Thread 1 gets started, coreid: 0 gets started, coreid: 01, offset: , offset: 0188269488
+
+Thread 2 gets started, coreid: 2, offset: 376538976
+Thread 3 gets started, coreid: 3, offset: 564808464
+Thread 4 gets started, coreid: 4, offset: 753077952
+Thread 5 gets started, coreid: 5, offset: 941347440
+Thread 6 gets started, coreid: 6, offset: 1129616928
+Thread 7 gets started, coreid: 7, offset: 1317886416
+Thread 8 gets started, coreid: 8, offset: 1506155904
+Thread 9 gets started, coreid: 9, offset: 1694425392
+Thread 10 gets started, coreid: 10, offset: 1882694880
+Thread 11 gets started, coreid: 11, offset: 2070964368
+Thread 12 gets started, coreid: 12, offset: 2259233856
+Thread 13 gets started, coreid: 13, offset: 2447503344
+Thread 14 gets started, coreid: 14, offset: 2635772832
+Thread 15 gets started, coreid: 15, offset: 2824042320
+Thread 16 gets started, coreid: 16, offset: 3012311808
+Thread 17 gets started, coreid: 17, offset: 3200581296
+Thread 18 gets started, coreid: 18, offset: 3388850784
+Thread 19 gets started, coreid: 19, offset: 3577120272
+Thread 20 gets started, coreid: 20, offset: 3765389760
+Thread 21 gets started, coreid: 21, offset: 3953659248
+Thread 22 gets started, coreid: 22, offset: 4141928736
+Thread 23 gets started, coreid: 23, offset: 4330198224
+Thread 24 gets started, coreid: 24, offset: 4518467712
+Thread 25 gets started, coreid: 25, offset: 4706737200
+Thread 26 gets started, coreid: 26, offset: 4895006688
+Thread 27 gets started, coreid: 27, offset: 5083276176
+Thread 28 gets started, coreid: 28, offset: 5271545664
+Thread 29 gets started, coreid: 29, offset: 5459815152
+[cost of second: 2.044, # of PUTs: 6986564]Thread: 1, coreid: 1 is completed!
+[cost of second: 2.06, # of PUTs: 6986564]Thread: 0, coreid: 0 is completed!
+[cost of second: 2.172, # of PUTs: 6986564]Thread: 2, coreid: 2 is completed!
+[cost of second: 2.531, # of PUTs: 6986564]Thread: 25, coreid: 25 is completed!
+[cost of second: 2.54, # of PUTs: 6986564]Thread: 24, coreid: 24 is completed!
+[cost of second: 2.544, # of PUTs: 6986564]Thread: 26, coreid: 26 is completed!
+[cost of second: 2.582, # of PUTs: 6986564]Thread: 3, coreid: 3 is completed!
+[cost of second: 2.564, # of PUTs: 6986564]Thread: 27, coreid: 27 is completed!
+[cost of second: 2.618, # of PUTs: 6986564]Thread: 23, coreid: 23 is completed!
+[cost of second: 2.619, # of PUTs: 6986573]Thread: 29, coreid: 29 is completed!
+[cost of second: 2.626, # of PUTs: 6986564]Thread: 28, coreid: 28 is completed!
+[cost of second: 2.635, # of PUTs: 6986564]Thread: 21, coreid: 21 is completed!
+[cost of second: 2.652, # of PUTs: 6986564]Thread: 16, coreid: 16 is completed!
+[cost of second: 2.651, # of PUTs: 6986564]Thread: 22, coreid: 22 is completed!
+[cost of second: 2.657, # of PUTs: 6986564]Thread: 18, coreid: 18 is completed!
+[cost of second: 2.676, # of PUTs: 6986564]Thread: 4, coreid: 4 is completed!
+[cost of second: 2.67, # of PUTs: 6986564]Thread: 17, coreid: 17 is completed!
+[cost of second: 2.693, # of PUTs: 6986564]Thread: 6, coreid: 6 is completed!
+[cost of second: 2.694, # of PUTs: 6986564]Thread: 5, coreid: 5 is completed!
+[cost of second: 2.684, # of PUTs: 6986564]Thread: 20, coreid: 20 is completed!
+[cost of second: 2.696, # of PUTs: 6986564]Thread: 19, coreid: 19 is completed!
+[cost of second: 2.716, # of PUTs: 6986564]Thread: 7, coreid: 7 is completed!
+[cost of second: 2.727, # of PUTs: 6986564]Thread: 12, coreid: 12 is completed!
+[cost of second: 2.726, # of PUTs: 6986564]Thread: 14, coreid: 14 is completed!
+[cost of second: 2.733, # of PUTs: 6986564]Thread: 15, coreid: 15 is completed!
+[cost of second: 2.734, # of PUTs: 6986564]Thread: 13, coreid: 13 is completed!
+[cost of second: 2.764, # of PUTs: 6986564]Thread: 11, coreid: 11 is completed!
+[cost of second: 2.771, # of PUTs: 6986564]Thread: 9, coreid: 9 is completed!
+[cost of second: 2.782, # of PUTs: 6986564]Thread: 8, coreid: 8 is completed!
+[cost of second: 2.802, # of PUTs: 6986564]Thread: 10, coreid: 10 is completed!
+Time Taken : 2805 millis
+Replay Exec Spent 2.80565 sec for txns: 5689928
+Throughput : 2.02802e+06 ops/sec

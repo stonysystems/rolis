@@ -1,0 +1,34 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 32
+ParID now : 1
+ParID now : 2
+ParID now : 3
+ParID now : 4
+ParID now : ParID now : 66
+ParID now : 8
+
+ParID now : 8
+ParID now : 9
+ParID now : 10
+ParID now : 11
+ParID now : 12
+ParID now : 13
+ParID now : 14
+ParID now : 15
+ParID now : 16
+ParID now : 17
+ParID now : 18
+ParID now : 19
+ParID now : 20
+ParID now : 21
+ParID now : 22
+ParID now : 23
+ParID now : 24
+ParID now : 25
+ParID now : 26
+ParID now : 27
+ParID now : 28
+ParID now : 29
+ParID now : 30
+ParID now : 31

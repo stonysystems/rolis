@@ -1,0 +1,9 @@
+total 966M
+-rw-rw-r-- 1 AzureUser AzureUser   54 Dec 19 22:30 Log-ThreadID:0.txt
+-rw-rw-r-- 1 AzureUser AzureUser 2.6M Dec 19 22:30 Log-ThreadID:1.txt
+-rw-rw-r-- 1 AzureUser AzureUser 9.5M Dec 19 22:30 Log-ThreadID:2.txt
+-rw-rw-r-- 1 AzureUser AzureUser 2.4M Dec 19 22:30 Log-ThreadID:3.txt
+-rw-rw-r-- 1 AzureUser AzureUser 5.3M Dec 19 22:30 Log-ThreadID:4.txt
+-rw-rw-r-- 1 AzureUser AzureUser  270 Dec 19 22:30 Log-ThreadID:5.txt
+-rw-rw-r-- 1 AzureUser AzureUser 947M Dec 19 22:30 Log-ThreadID:6.txt
+drwxrwxr-x 2 AzureUser AzureUser   80 Dec 19 22:30 info

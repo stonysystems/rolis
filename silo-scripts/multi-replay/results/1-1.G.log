@@ -1,0 +1,4 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 1
+ParID now : 1

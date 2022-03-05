@@ -1,0 +1,121 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 7
+ParID now : 1
+ParID now : 2
+ParID now : 3
+ParID now : 4
+ParID now : 5
+ParID now : 6
+ParID now : 7
+--------------------
+Table Name= customer_0 ID= 10001
+Table Name= customer_1 ID= 10002
+Table Name= customer_2 ID= 10003
+Table Name= customer_3 ID= 10004
+Table Name= customer_4 ID= 10005
+Table Name= customer_5 ID= 10006
+Table Name= customer_6 ID= 10007
+Table Name= customer_name_idx_0 ID= 10008
+Table Name= customer_name_idx_1 ID= 10009
+Table Name= customer_name_idx_2 ID= 10010
+Table Name= customer_name_idx_3 ID= 10011
+Table Name= customer_name_idx_4 ID= 10012
+Table Name= customer_name_idx_5 ID= 10013
+Table Name= customer_name_idx_6 ID= 10014
+Table Name= district_0 ID= 10015
+Table Name= district_1 ID= 10016
+Table Name= district_2 ID= 10017
+Table Name= district_3 ID= 10018
+Table Name= district_4 ID= 10019
+Table Name= district_5 ID= 10020
+Table Name= district_6 ID= 10021
+Table Name= history_0 ID= 10022
+Table Name= history_1 ID= 10023
+Table Name= history_2 ID= 10024
+Table Name= history_3 ID= 10025
+Table Name= history_4 ID= 10026
+Table Name= history_5 ID= 10027
+Table Name= history_6 ID= 10028
+Table Name= item ID= 10029
+Table Name= new_order_0 ID= 10030
+Table Name= new_order_1 ID= 10031
+Table Name= new_order_2 ID= 10032
+Table Name= new_order_3 ID= 10033
+Table Name= new_order_4 ID= 10034
+Table Name= new_order_5 ID= 10035
+Table Name= new_order_6 ID= 10036
+Table Name= oorder_0 ID= 10037
+Table Name= oorder_1 ID= 10038
+Table Name= oorder_2 ID= 10039
+Table Name= oorder_3 ID= 10040
+Table Name= oorder_4 ID= 10041
+Table Name= oorder_5 ID= 10042
+Table Name= oorder_6 ID= 10043
+Table Name= oorder_c_id_idx_0 ID= 10044
+Table Name= oorder_c_id_idx_1 ID= 10045
+Table Name= oorder_c_id_idx_2 ID= 10046
+Table Name= oorder_c_id_idx_3 ID= 10047
+Table Name= oorder_c_id_idx_4 ID= 10048
+Table Name= oorder_c_id_idx_5 ID= 10049
+Table Name= oorder_c_id_idx_6 ID= 10050
+Table Name= order_line_0 ID= 10051
+Table Name= order_line_1 ID= 10052
+Table Name= order_line_2 ID= 10053
+Table Name= order_line_3 ID= 10054
+Table Name= order_line_4 ID= 10055
+Table Name= order_line_5 ID= 10056
+Table Name= order_line_6 ID= 10057
+Table Name= stock_0 ID= 10058
+Table Name= stock_1 ID= 10059
+Table Name= stock_2 ID= 10060
+Table Name= stock_3 ID= 10061
+Table Name= stock_4 ID= 10062
+Table Name= stock_5 ID= 10063
+Table Name= stock_6 ID= 10064
+Table Name= stock_data_0 ID= 10065
+Table Name= stock_data_1 ID= 10066
+Table Name= stock_data_2 ID= 10067
+Table Name= stock_data_3 ID= 10068
+Table Name= stock_data_4 ID= 10069
+Table Name= stock_data_5 ID= 10070
+Table Name= stock_data_6 ID= 10071
+Table Name= warehouse_0 ID= 10072
+Table Name= warehouse_1 ID= 10073
+Table Name= warehouse_2 ID= 10074
+Table Name= warehouse_3 ID= 10075
+Table Name= warehouse_4 ID= 10076
+Table Name= warehouse_5 ID= 10077
+Table Name= warehouse_6 ID= 10078
+mt_get: 55594239, mt_put: 18197721, mt_del: 168312, mt_scan: 2295532, mt_rscan: 111899, ht_get: 0, ht_put: 0, ht_insert: 0, ht_del: 0
+--------------------
+Info folder has been generated okay ----<<<<<<
+Total Delete Observed 0
+Total Submits 0
+186223.089285 186223.089285 0.037507 0.000000 16.993821 1258661
+close handle all started
+close_all all ok
+-----------------------------
+Log generation statistic
+-----------------------------
+Sec  	   unix  	       	     	Average  
+Spent	timestamp	entries	Bytes	Entry Size
+-----------------------------
+0	1608417500	29683	2039	562
+1	1608417501	187467	11573	505
+2	1608417502	100146	16545	1353
+3	1608417503	174684	23950	1123
+4	1608417504	186869	23973	1050
+5	1608417505	186214	24006	1056
+6	1608417506	187976	24071	1049
+7	1608417507	187221	24191	1058
+8	1608417508	187052	23981	1050
+9	1608417509	188154	24308	1058
+10	1608417510	190399	24283	1044
+11	1608417511	186260	24027	1056
+12	1608417512	186397	23810	1046
+13	1608417513	187657	24190	1056
+14	1608417514	189061	24334	1054
+15	1608417515	188316	24231	1054
+16	1608417516	187422	24310	1062
+17	1608417517	83487	10858	1065

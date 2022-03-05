@@ -1,0 +1,12 @@
+
+
+
+
+[11/03/2020]
+
+P1 1. create byte logs with k threads and replay with k threads <<- jay [log generation part completed]; weihei has to generate and use logs for replay
+P0 2. fix number of tables with scale factors <<- jay [completed]
+P2 3. CPU profiling for replay <<- weihei
+P4 4. Write automate python code for collecting logs with given configuration
+	4.1 Write json type config runner for replay
+	4.2 generate a comparision line chart with 3  tuples (Original Silo, Silo + Paxos , Silo + Paxos + Replay) : #NEXT WEEK

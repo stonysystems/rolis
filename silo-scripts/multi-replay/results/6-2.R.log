@@ -1,0 +1,16 @@
+total size of logs: 3206.92 MB, # of entries:124544323
+Thread Thread 1 gets started, coreid: 0 gets started, coreid: 01, offset: , offset: 0560449449
+
+Thread 2 gets started, coreid: 2, offset: 1120898898
+Thread 3 gets started, coreid: 3, offset: 1681348347
+Thread 4 gets started, coreid: 4, offset: 2241797796
+Thread 5 gets started, coreid: 5, offset: 2802247245
+[cost of second: 7.12, # of PUTs: 20797930]Thread: 5, coreid: 5 is completed!
+[cost of second: 7.332, # of PUTs: 20797929]Thread: 4, coreid: 4 is completed!
+[cost of second: 7.467, # of PUTs: 20797929]Thread: 3, coreid: 3 is completed!
+[cost of second: 7.497, # of PUTs: 20797929]Thread: 2, coreid: 2 is completed!
+[cost of second: 7.51, # of PUTs: 20797929]Thread: 1, coreid: 1 is completed!
+[cost of second: 7.544, # of PUTs: 20797929]Thread: 0, coreid: 0 is completed!
+Time Taken : 7544 millis
+Replay Exec Spent 7.54493 sec for txns: 3228339
+Throughput : 427882 ops/sec

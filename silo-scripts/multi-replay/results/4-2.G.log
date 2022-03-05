@@ -1,0 +1,79 @@
+paxos batch=50000 :::: 50000
+kSTOBatchSize = 100
+nthreads = 4
+ParID now : 1
+ParID now : 2
+ParID now : 3
+ParID now : 4
+--------------------
+Table Name= customer_0 ID= 10001
+Table Name= customer_1 ID= 10002
+Table Name= customer_2 ID= 10003
+Table Name= customer_3 ID= 10004
+Table Name= customer_name_idx_0 ID= 10005
+Table Name= customer_name_idx_1 ID= 10006
+Table Name= customer_name_idx_2 ID= 10007
+Table Name= customer_name_idx_3 ID= 10008
+Table Name= district_0 ID= 10009
+Table Name= district_1 ID= 10010
+Table Name= district_2 ID= 10011
+Table Name= district_3 ID= 10012
+Table Name= history_0 ID= 10013
+Table Name= history_1 ID= 10014
+Table Name= history_2 ID= 10015
+Table Name= history_3 ID= 10016
+Table Name= item ID= 10017
+Table Name= new_order_0 ID= 10018
+Table Name= new_order_1 ID= 10019
+Table Name= new_order_2 ID= 10020
+Table Name= new_order_3 ID= 10021
+Table Name= oorder_0 ID= 10022
+Table Name= oorder_1 ID= 10023
+Table Name= oorder_2 ID= 10024
+Table Name= oorder_3 ID= 10025
+Table Name= oorder_c_id_idx_0 ID= 10026
+Table Name= oorder_c_id_idx_1 ID= 10027
+Table Name= oorder_c_id_idx_2 ID= 10028
+Table Name= oorder_c_id_idx_3 ID= 10029
+Table Name= order_line_0 ID= 10030
+Table Name= order_line_1 ID= 10031
+Table Name= order_line_2 ID= 10032
+Table Name= order_line_3 ID= 10033
+Table Name= stock_0 ID= 10034
+Table Name= stock_1 ID= 10035
+Table Name= stock_2 ID= 10036
+Table Name= stock_3 ID= 10037
+Table Name= stock_data_0 ID= 10038
+Table Name= stock_data_1 ID= 10039
+Table Name= stock_data_2 ID= 10040
+Table Name= stock_data_3 ID= 10041
+Table Name= warehouse_0 ID= 10042
+Table Name= warehouse_1 ID= 10043
+Table Name= warehouse_2 ID= 10044
+Table Name= warehouse_3 ID= 10045
+mt_get: 45075509, mt_put: 14608601, mt_del: 123229, mt_scan: 1851237, mt_rscan: 90613, ht_get: 0, ht_put: 0, ht_insert: 0, ht_del: 0
+--------------------
+Info folder has been generated okay ----<<<<<<
+Total Delete Observed 0
+Total Submits 0
+226683.843570 226683.843570 0.017586 0.000000 17.591366 1020694
+close handle all started
+close_all all ok
+-----------------------------
+Log generation statistic
+-----------------------------
+Sec  	   unix  	       	     	Average  
+Spent	timestamp	entries	Bytes	Entry Size
+-----------------------------
+0	1608417229	35013	2367	553
+1	1608417230	125098	11709	766
+2	1608417231	215473	28992	1102
+3	1608417232	228206	29513	1059
+4	1608417233	229397	29406	1050
+5	1608417234	231512	29732	1052
+6	1608417235	228393	29398	1054
+7	1608417236	228660	29347	1051
+8	1608417237	227668	29290	1053
+9	1608417238	229928	29692	1057
+10	1608417239	226986	29257	1055
+11	1608417240	187820	24240	1057

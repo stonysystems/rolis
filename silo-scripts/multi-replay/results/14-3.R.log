@@ -1,0 +1,32 @@
+total size of logs: 3796.56 MB, # of entries:147443795
+Thread Thread 10 gets started, coreid:  gets started, coreid: 01, offset: , offset: 0284355873
+
+Thread 3 gets started, coreid: 3, offset: 853067619
+Thread 2 gets started, coreid: 2, offset: 568711746
+Thread 4 gets started, coreid: 4, offset: 1137423492
+Thread 5 gets started, coreid: 5, offset: 1421779365
+Thread 6 gets started, coreid: 6, offset: 1706135238
+Thread 7 gets started, coreid: 7, offset: 1990491111
+Thread 8 gets started, coreid: 8, offset: 2274846984
+Thread 9 gets started, coreid: 9, offset: 2559202857
+Thread 10 gets started, coreid: 10, offset: 2843558730
+Thread 11 gets started, coreid: 11, offset: 3127914603
+Thread 12 gets started, coreid: 12, offset: 3412270476
+Thread 13 gets started, coreid: 13, offset: 3696626349
+[cost of second: 2.954, # of PUTs: 10552269]Thread: 0, coreid: 0 is completed!
+[cost of second: 3.708, # of PUTs: 10552269]Thread: 1, coreid: 1 is completed!
+[cost of second: 3.743, # of PUTs: 10552269]Thread: 9, coreid: 9 is completed!
+[cost of second: 3.75, # of PUTs: 10552269]Thread: 8, coreid: 8 is completed!
+[cost of second: 3.771, # of PUTs: 10552269]Thread: 10, coreid: 10 is completed!
+[cost of second: 3.787, # of PUTs: 10552269]Thread: 12, coreid: 12 is completed!
+[cost of second: 3.791, # of PUTs: 10552269]Thread: 11, coreid: 11 is completed!
+[cost of second: 3.827, # of PUTs: 10552278]Thread: 13, coreid: 13 is completed!
+[cost of second: 3.851, # of PUTs: 10552269]Thread: 5, coreid: 5 is completed!
+[cost of second: 3.889, # of PUTs: 10552269]Thread: 3, coreid: 3 is completed!
+[cost of second: 3.893, # of PUTs: 10552269]Thread: 4, coreid: 4 is completed!
+[cost of second: 3.896, # of PUTs: 10552269]Thread: 7, coreid: 7 is completed!
+[cost of second: 3.898, # of PUTs: 10552269]Thread: 2, coreid: 2 is completed!
+[cost of second: 3.9, # of PUTs: 10552269]Thread: 6, coreid: 6 is completed!
+Time Taken : 3902 millis
+Replay Exec Spent 3.90206 sec for txns: 3940815
+Throughput : 1.00993e+06 ops/sec

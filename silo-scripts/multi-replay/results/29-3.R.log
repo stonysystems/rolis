@@ -1,0 +1,62 @@
+total size of logs: 5284.26 MB, # of entries:205220349
+Thread 0 gets started, coreid: 0, offset: 0
+Thread 1 gets started, coreid: 1, offset: 191067201
+Thread 2 gets started, coreid: 2, offset: 382134402
+Thread 3 gets started, coreid: 3, offset: 573201603
+Thread 4 gets started, coreid: 4, offset: 764268804
+Thread 5 gets started, coreid: 5, offset: 955336005
+Thread 6 gets started, coreid: 6, offset: 1146403206
+Thread 7 gets started, coreid: 7, offset: 1337470407
+Thread 8 gets started, coreid: 8, offset: 1528537608
+Thread 9 gets started, coreid: 9, offset: 1719604809
+Thread 10 gets started, coreid: 10, offset: 1910672010
+Thread 11 gets started, coreid: 11, offset: 2101739211
+Thread 12 gets started, coreid: 12, offset: 2292806412
+Thread 13 gets started, coreid: 13, offset: 2483873613
+Thread 14 gets started, coreid: 14, offset: 2674940814
+Thread 15 gets started, coreid: 15, offset: 2866008015
+Thread 17 gets started, coreid: Thread 1716 gets started, coreid: , offset: 16, offset: 32481424173057075216
+
+Thread 18 gets started, coreid: 18, offset: 3439209618
+Thread 19 gets started, coreid: 19, offset: 3630276819
+Thread 20 gets started, coreid: 20, offset: 3821344020
+Thread 21 gets started, coreid: 21, offset: 4012411221
+Thread 22 gets started, coreid: 22, offset: 4203478422
+Thread 23 gets started, coreid: 23, offset: 4394545623
+Thread 24 gets started, coreid: 24, offset: 4585612824
+Thread 25 gets started, coreid: 25, offset: 4776680025
+Thread 26 gets started, coreid: 26, offset: 4967747226
+Thread 27 gets started, coreid: 27, offset: 5158814427
+Thread 28 gets started, coreid: 28, offset: 5349881628
+[cost of second: 1.993, # of PUTs: 7090407]Thread: 28, coreid: 28 is completed!
+[cost of second: 2.05, # of PUTs: 7090385]Thread: 0, coreid: 0 is completed!
+[cost of second: 2.068, # of PUTs: 7090385]Thread: 1, coreid: 1 is completed!
+[cost of second: 2.235, # of PUTs: 7090385]Thread: 2, coreid: 2 is completed!
+[cost of second: 2.538, # of PUTs: 7090385]Thread: 24, coreid: 24 is completed!
+[cost of second: 2.541, # of PUTs: 7090385]Thread: 25, coreid: 25 is completed!
+[cost of second: 2.558, # of PUTs: 7090385]Thread: 27, coreid: 27 is completed!
+[cost of second: 2.585, # of PUTs: 7090385]Thread: 3, coreid: 3 is completed!
+[cost of second: 2.567, # of PUTs: 7090385]Thread: 26, coreid: 26 is completed!
+[cost of second: 2.689, # of PUTs: 7090385]Thread: 20, coreid: 20 is completed!
+[cost of second: 2.685, # of PUTs: 7090385]Thread: 23, coreid: 23 is completed!
+[cost of second: 2.693, # of PUTs: 7090385]Thread: 21, coreid: 21 is completed!
+[cost of second: 2.698, # of PUTs: 7090385]Thread: 22, coreid: 22 is completed!
+[cost of second: 2.71, # of PUTs: 7090385]Thread: 16, coreid: 16 is completed!
+[cost of second: 2.715, # of PUTs: 7090385]Thread: 18, coreid: 18 is completed!
+[cost of second: 2.737, # of PUTs: 7090385]Thread: 6, coreid: 6 is completed!
+[cost of second: 2.74, # of PUTs: 7090385]Thread: 5, coreid: 5 is completed!
+[cost of second: 2.734, # of PUTs: 7090385]Thread: 11, coreid: 11 is completed!
+[cost of second: 2.731, # of PUTs: 7090385]Thread: 19, coreid: 19 is completed!
+[cost of second: 2.746, # of PUTs: 7090385]Thread: 4, coreid: 4 is completed!
+[cost of second: 2.747, # of PUTs: 7090385]Thread: 7, coreid: 7 is completed!
+[cost of second: 2.745, # of PUTs: 7090385]Thread: 14, coreid: 14 is completed!
+[cost of second: 2.751, # of PUTs: 7090385]Thread: 10, coreid: 10 is completed!
+[cost of second: 2.748, # of PUTs: 7090385]Thread: 17, coreid: 17 is completed!
+[cost of second: 2.761, # of PUTs: 7090385]Thread: 15, coreid: 15 is completed!
+[cost of second: 2.771, # of PUTs: 7090385]Thread: 9, coreid: 9 is completed!
+[cost of second: 2.772, # of PUTs: 7090385]Thread: 13, coreid: 13 is completed!
+[cost of second: 2.783, # of PUTs: 7090385]Thread: 12, coreid: 12 is completed!
+[cost of second: 2.793, # of PUTs: 7090385]Thread: 8, coreid: 8 is completed!
+Time Taken : 2799 millis
+Replay Exec Spent 2.79973 sec for txns: 5581245
+Throughput : 1.99349e+06 ops/sec
