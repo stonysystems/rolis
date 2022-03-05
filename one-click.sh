@@ -1,5 +1,5 @@
 #!/bin/bash
-repos="rolis-eurosys2022"  # repos name, default
+repos="rolis"  # repos name, default
 workdir="~"  # we default put our repos under the root
 leadrIP=$( cat ./scripts/ip_leader_replica )
 p1=$( cat ./scripts/ip_p1_follower_replica )
@@ -10,8 +10,8 @@ start=1
 # maximum of the number of worker threads
 end=31
 
-repos="silo-sto"
-workdir="~/weihai-projects"
+# repos="silo-sto"
+# workdir="~/weihai-projects"
 
 setup () {
     bash ./batch_silo.sh kill
@@ -344,13 +344,13 @@ experiment13_collect() {
 
 experiment14_s() {
     # a machine with 32-core as the client is required, here I use 10.1.0.74
-    eval "ulimit -n 10000; cd $workdir/$repos/ && python3 scripts/leader_b.py $1 $1 1" &
+    eval "ulimit -n 10000; cd $workdir/$repos/ && python3 scripts/leader_b_m.py $1 $1 1" &
     sleep 1
 
-    ssh $p2 "ulimit -n 10000; cd $workdir/$repos/ && python3 scripts/follower_b2.py $1 $1 1" &
+    ssh $p2 "ulimit -n 10000; cd $workdir/$repos/ && python3 scripts/follower_b2_m.py $1 $1 1" &
     sleep 1
 
-    ssh $p1 "ulimit -n 10000; cd $workdir/$repos/ && python3 scripts/follower_b1.py $1 $1 1" &
+    ssh $p1 "ulimit -n 10000; cd $workdir/$repos/ && python3 scripts/follower_b1_m.py $1 $1 1" &
     sleep 1
 
     ssh "10.1.0.74" "ulimit -n 10000; cd $workdir/$repos/ && ./third-party/paxos/build/nc_main 0 $1 '$leadrIP'" &
@@ -360,18 +360,22 @@ experiment14_s() {
     ./batch_silo.sh kill
 }
 
-experiment14() {
+experiment14() {  
+   # 1. prepare a 32-core cpu client, let's assume is 10.1.0.74
+   # 2. modify the nc_setup_server to the server_ip (10.1.0.7)
+   # 3. open the comment "10.1.0.74" in the batch_silo.sh 
    echo "experiment14: networked clients\n"
    make paxos
-   sudo ./multi_client.sh
+   # ./multi_client.sh is for tpc
+   sudo ./multi_client_ycsb.sh
    ./batch_silo.sh kill
    ./batch_silo.sh scp
 
    for (( trd=$start; trd<=$end; trd++ ))
-do
-   ./batch_silo.sh kill
-   experiment14_s $trd
-done
+   do
+     ./batch_silo.sh kill
+     experiment14_s $trd
+   done
 }
 
 experiment14_local() {
@@ -412,29 +416,29 @@ experiment14_ycsb_local() {
    sudo pkill -f nc_main
 }
 
-#setup
-## reproduce results reported in the paper
-#experiment1
-#experiment2
-#experiment3
-#experiment4
-#experiment5
-#experiment6 4
-#experiment6 8
-#experiment6 16
-#experiment7
-#experiment8
-#experiment9
-#experiment10
-#experiment11
-#experiment12
-#experiment13_1
-#experiment13_2
-#experiment13_3
-#experiment13_4
-#experiment13_collect
+setup
+# reproduce results reported in the paper
+experiment1
+experiment2
+experiment3
+experiment4
+experiment5
+experiment6 4
+experiment6 8
+experiment6 16
+experiment7
+experiment8
+experiment9
+experiment10
+experiment11
+experiment12
+experiment13_1
+experiment13_2
+experiment13_3
+experiment13_4
+experiment13_collect
 
 # for testing experiments
 #experiment14
 #experiment14_local
-experiment14_ycsb_local
+#experiment14_ycsb_local

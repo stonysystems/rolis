@@ -1,4 +1,4 @@
-repos="rolis-eurosys2022"  # repos name, default
+repos="rolis"  # repos name, default
 workdir="~"  # we default put our repos under the root
 leadrIP=$( cat ./scripts/ip_leader_replica )
 p1=$( cat ./scripts/ip_p1_follower_replica )
@@ -6,11 +6,8 @@ p2=$( cat ./scripts/ip_p2_follower_replica )
 clients=(
       $p1 # p1 follower replica IP
       $p2 # p2 follower replica IP
-      "10.1.0.74" # it is only required for networked clients
+      #"10.1.0.74" # it is only required for networked clients
 )
-
-repos="silo-sto"
-workdir="~/weihai-projects"
 
 cmd1=""
 cmd2="sudo skill dbtest;sudo pkill dbtest; sudo pkill nc_main; sleep 1"

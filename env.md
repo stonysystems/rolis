@@ -10,8 +10,8 @@ Let's assume here, `10.1.0.7` is the leader replica, `10.1.0.8` serves as the p1
 ```bash
 # on the leader replica 
 cd ~
-git clone https://github.com/shenweihai1/rolis-eurosys2022.git
-cd rolis-eurosys2022
+git clone https://github.com/stonysystems/rolis.git
+cd rolis
 # install dependencies
 bash ./install.sh
 
@@ -22,13 +22,13 @@ cd ./third-party/paxos/config/1silo_1paxos_2follower
 ./run.sh "10.1.0.7" "10.1.0.8" "10.1.0.9"
 
 # compile Paxos
-cd ~/rolis-eurosys2022
+cd ~/rolis
 make paxos
 ```
 
 ### Sync modifications to two other replicas via ssh (still run this command the leader replica)
 ```bash
-cd ~/rolis-eurosys2022
+cd ~/rolis
 bash ./batch_silo.sh scp
 ```
 At this moment, the running environment on 3 replicas is ready. 

@@ -1,13 +1,13 @@
 #!/bin/bash
-repos="rolis-eurosys2022"  # repos name, default
+repos="rolis"  # repos name, default
 workdir="~"  # we default put our repos under the root
 leadrIP=$( cat ./scripts/ip_leader_replica )
 p1=$( cat ./scripts/ip_p1_follower_replica )
 p2=$( cat ./scripts/ip_p2_follower_replica )
 ulimit -n 10000
 
-repos="silo-sto"
-workdir="~/weihai-projects"
+# repos="silo-sto"
+# workdir="~/weihai-projects"
 
 # cleanup logs 
 eval "cd $workdir/$repos/ && sudo rm -rf xxxx15/*"

@@ -40,29 +40,29 @@ function test_silo_only
 }
 
 # test failure
-# function test_failure
-# {
-#   sudo pkill -f dbtest
-#   ./multi.sh
-#   ./multi_recover_b0.sh 2
-#   sleep 1
-#   ./multi_recover_b1.sh 2
-#   sleep 1
-#   ./multi_recover_b2.sh 2
-#   sleep 10
-#   kill $(ps aux | grep 'paxos-leader-config' | awk '{print $2}')
-#   sleep 50
+function test_failure
+{
+  sudo pkill -f dbtest
+  ./multi-failover.sh
+  ./multi_recover_b0.sh 2
+  sleep 1
+  ./multi_recover_b1.sh 2
+  sleep 1
+  ./multi_recover_b2.sh 2
+  sleep 10
+  kill $(ps aux | grep 'paxos-leader-config' | awk '{print $2}')
+  sleep 50
 
-#   sudo pkill -f dbtest
-#   run "grep commits: $base/xxxx_recover/leader-2.log"
-#   assert_success
+  sudo pkill -f dbtest
+  run "grep commits: $base/xxxx_recover/leader-2.log"
+  assert_success
 
-#   cat "$base/xxxx_recover/follower-p1-2.log" "$base/xxxx_recover/follower-p2-2.log" > "$base/xxxx_recover/follower-2.log"
-#   run "grep agg_throughput: $base/xxxx_recover/follower-2.log"
-#   assert_success
+  cat "$base/xxxx_recover/follower-p1-2.log" "$base/xxxx_recover/follower-p2-2.log" > "$base/xxxx_recover/follower-2.log"
+  run "grep agg_throughput: $base/xxxx_recover/follower-2.log"
+  assert_success
 
-#   run "grep process. $base/xxxx_recover/follower-2.log"
-#   assert_success
-# }
+  run "grep process. $base/xxxx_recover/follower-2.log"
+  assert_success
+}
 
 testrunner
