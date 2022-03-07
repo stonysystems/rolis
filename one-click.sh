@@ -418,27 +418,27 @@ experiment14_ycsb_local() {
 
 setup
 # reproduce results reported in the paper
-experiment1
-experiment2
-experiment3
-experiment4
-experiment5
-experiment6 4
-experiment6 8
-experiment6 16
-experiment7
-experiment8
+#experiment1
+#experiment2
+#experiment3
+#experiment4
+#experiment5
+#experiment6 4
+#experiment6 8
+#experiment6 16
+#experiment7
+#experiment8
 experiment9
-experiment10
-experiment11
+#experiment10
+#experiment11
 experiment12
-experiment13_1
-experiment13_2
-experiment13_3
-experiment13_4
-experiment13_collect
 
 # for testing experiments
+#experiment13_1
+#experiment13_2
+#experiment13_3
+#experiment13_4
+#experiment13_collect
 #experiment14
 #experiment14_local
 #experiment14_ycsb_local
