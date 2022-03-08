@@ -55,3 +55,45 @@ We provide one-click runnable to generate all results under folder `./results`. 
 cd ~/rolis
 bash one-click.sh
 ```
+
+## Comparisons
+### Calvin 
+Please note that, you need a 32-core machine (*we eliminate the replication in this Calvin implementation*). All results you can find under `./results`.
+```
+cd ~
+git clone https://github.com/shenweihai1/star.git
+bash one-click.sh
+```
+### 2PL
+In this experiment, you need 32 4-core clients and 3 32-core servers (*Please make sure all clients and servers can connect to each other without password*).
+#### environment setup
+1. config IPs and username for clients and servers in `batch_janus.sh`
+2. then download code and install dependencies
+```
+# on the leader replica
+cd ~
+git clone https://github.com/shenweihai1/janus.git
+cd janus
+./batch_janus.sh scp
+./batch_janus.sh install
+```
+3. config Paxos configuration under `par-dist`. 
+```
+p1 => leader ip
+p2 => p1 replica ip
+p3 => p2 replica ip
+c1 ~ c32 => client1 ~ client32 ip
+```
+4. compile and sync to code to all machines
+```
+cd ~/janus
+make 
+./batch_janus.sh scp
+```
+
+#### Run the experiment. 
+All results you can find under `./results` (*We pick the one whose progress is closest to 100% as the throughput*)
+```
+cd ~/janus
+bash one-click.sh
+```
