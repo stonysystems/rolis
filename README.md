@@ -97,3 +97,24 @@ All results you can find under `./results` (*We pick the one whose progress is c
 cd ~/janus
 bash one-click.sh
 ```
+### case 1: run chosen experiments
+The one-click script usually can complete all experiments till the end, but everything can happen. In this case, you don't have to re-run completed experiments. You can comment the unwanted experiments and leave the wanted ones in the `one-click.sh`. For example, you can choose to run `experiment-9` and `experiment-12` as below
+![alt](./documents/one-click.png)
+
+### case 2: run the experiment with chosen worker threads
+You can choose to re-run the experiment with chosen worker threads, e.g., only run with worker threads 13-15 by configuration in the `one-click.sh`.
+![alt](./documents/rerun-exp.png)
+You can find a more detailed experiment instructions in [experiments](./instructions.md).
+
+The results should be as below
+1. `batch-latency.log`: the 50th, 90th and 95th latency results of Rolis with different batch-sizes
+2. `batch-throughput.log`: the throughput results of Rolis with different batch-sizes
+3. `failover-16-throughput.log`: the throughput over time in the failover scenario
+4. `scalability-tpcc.log`: the throughput of Rolis with different worker threads under tpcc workload
+5. `scalability-ycsb.log`: the throughput of Rolis with different worker threaders under ycsb++ workload
+6. `silo-only-tpcc.log`: the throughput of Silo under tpcc workload
+7. `silo-only-ycsb.log`: the throughput of Silo under ycsb++ workload
+8. `single_paxos_stream.log`: single stream experiment
+9. `throughput_skewed_workload-rolis.log`: Rolis's throughput on skewed-workload
+10. `silo-only-skewed.log`: Silo's throughput on skewed-workload
+11. `replay-only.log`: Replay-only experiment
