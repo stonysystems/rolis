@@ -3,8 +3,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
 
+matplotlib.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
+
 def millions(x, pos):
-    return '%1.2fM' % (x * 1e-6)
+    return '%1.1fM' % (x * 1e-6)
 formatter = FuncFormatter(millions)
 
 
@@ -12,7 +15,6 @@ formatter = FuncFormatter(millions)
 #   1. set scale-factor to 4
 #   2. g_txn_workload_mix => {100, 0, 0, 0, 0} in tpcc.cc
 #   3. g_new_order_fast_id_gen => 0 in tpcc.cc
-
 
 txt = """
 78142.8	64112.2
@@ -63,8 +65,8 @@ for l in txt.split("\n"):
 
 plt.rcParams["font.size"] = 30
 matplotlib.rcParams['lines.markersize'] = 14
-plt.rcParams["font.family"] = "serif"
-matplotlib.rcParams["font.family"] = "serif"
+plt.rcParams["font.family"] = "Times"
+matplotlib.rcParams["font.family"] = "Times"
 fig, ax = plt.subplots(figsize=(14, 9))
 
 ax.yaxis.set_major_formatter(formatter)
@@ -75,8 +77,8 @@ ax.set_ylim([0, 5 * 10 **5])
 # ax.set(xlabel='# of threads',
 #           ylabel='Throughput (txns/sec)',
 #           title=None)
-ax.set_xlabel("# of threads", fontname="serif")
-ax.set_ylabel("Throughput (txns/sec)", fontname="serif")
+ax.set_xlabel("\# of threads", fontname="Times")
+ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
 # https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot/43439132#43439132
 #ax.legend(bbox_to_anchor=(0.001, 0.799, 0.4, 0.2), mode="expand", ncol=1, loc="lower right", borderaxespad=0, frameon=True, fancybox=False, framealpha=1)
 ax.legend(bbox_to_anchor=(0, 0.92, 1, 0.2), mode="expand", ncol=4, loc="upper left", borderaxespad=0.2, frameon=False)
@@ -84,9 +86,9 @@ ax.set_xticks([4, 8, 12, 16, 20, 24, 28])
 ax.set_xticklabels(["4", "8", "12", "16", "20", "24", "28"])
 ax.yaxis.grid()
 for tick in ax.get_xticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 fig.tight_layout()
 fig.savefig("skewed.eps", format='eps', dpi=1000)
 plt.show()

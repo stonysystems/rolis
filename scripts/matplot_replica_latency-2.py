@@ -2,10 +2,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
-
+matplotlib.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
 # the figure with zero-based
 def millions(x, pos):
-    return '%1.2fM' % (x * 1e-6)
+    return '%1.1fM' % (x * 1e-6)
 formatter = FuncFormatter(millions)
 
 # Batch-size	Throughput	10 %	50 %	90 %	95 %	99 %
@@ -37,8 +38,8 @@ for l in txt.split("\n"):
 plt.rcParams["font.size"] = 30
 matplotlib.rcParams['lines.markersize'] = 14
 fig, ax = plt.subplots(figsize=(14, 9))
-plt.rcParams["font.family"] = "serif"
-matplotlib.rcParams["font.family"] = "serif"
+plt.rcParams["font.family"] = "Times"
+matplotlib.rcParams["font.family"] = "Times"
 
 ax.set_xticklabels(["50", "100", "200", "400", "800", "1600", "3200"])
 ax.yaxis.set_major_formatter(formatter)
@@ -46,8 +47,8 @@ ax.set_xticks(keys)
 # ax.set(xlabel='Batch size',
 #         ylabel='Throughput (txns/sec)',
 #         title=None)
-ax.set_xlabel("Batch size", fontname="serif")
-ax.set_ylabel("Throughput (txns/sec)", fontname="serif")
+ax.set_xlabel("Batch size", fontname="Times")
+ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
 ax.plot(keys, values1, marker="+", label='TPUT', linestyle='--', linewidth=3)
 ax.legend(bbox_to_anchor=(0, 0.92, 0.25, 0.2), mode="expand", ncol=1, loc="upper left", borderaxespad=0, frameon=False)
 ax.set_ylim([0 * 1000, 700 * 1000])
@@ -61,18 +62,18 @@ ax2.yaxis.grid()
 # ax2.set(xlabel=None,
 #         ylabel='Latency (ms)',
 #         title=None)
-ax2.set_ylabel("Latency (ms)", fontname="serif")
+ax2.set_ylabel("Latency (ms)", fontname="Times")
 ax2.set_xticklabels(["50", "100", "200", "400", "800", "1600", "3200"])
 ax2.legend(bbox_to_anchor=(0.25, 0.92, 0.75, 0.2), mode="expand", ncol=3, loc="upper left", borderaxespad=0, frameon=False, fancybox=False)
 ax2.set_ylim([0, 240])
 for tick in ax.get_xticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 for tick in ax2.get_xticklabels():
-        tick.set_fontname("serif")
+        tick.set_fontname("Times")
 for tick in ax2.get_yticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 fig.tight_layout()
 fig.savefig("latency-2.eps", format='eps', dpi=1000)
 plt.show()

@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
 
+matplotlib.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
+
 def millions(x, pos):
     return '%1.1fM' % (x * 1e-6)
 formatter = FuncFormatter(millions)
@@ -329,7 +332,7 @@ keys_2=[i+1 for i in range(len(value_2))]
 plt.rcParams["font.size"] = 30
 matplotlib.rcParams['lines.markersize'] = 14
 matplotlib.rcParams['lines.markersize'] = 14
-plt.rcParams["font.family"] = "serif"
+plt.rcParams["font.family"] = "Times"
 fig, ax = plt.subplots(figsize=(14, 9))
 
 ax.yaxis.set_major_formatter(formatter)
@@ -345,13 +348,13 @@ ax.set_xticklabels([int(e/10) for e in list(range(0, 306, 50))])
 # ax.set(xlabel='Time (sec)',
 #        ylabel='Throughput (txns/sec)',
 #        title=None)
-ax.set_xlabel("Time (sec)", fontname="serif")
-ax.set_ylabel("Throughput (txns/sec)", fontname="serif")
+ax.set_xlabel("Time (sec)", fontname="Times")
+ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
 ax.legend(bbox_to_anchor=(0, 0.92, 1, 0.2), mode="expand", ncol=4, loc="upper left", borderaxespad=0.2, frameon=False)
 ax.grid()
 for tick in ax.get_xticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 fig.savefig("failure_recovery.eps", format='eps', dpi=1000)
 plt.show()

@@ -3,18 +3,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
 
+matplotlib.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
+
 def millions(x, pos):
     return '%1.1fM' % (x * 1e-6)
 formatter = FuncFormatter(millions)
 
 txt = """
-4	37608.26667	7.48E+05	1584450.00
-8	65998.83333	1.15E+06	2972510.00
-12	86365.53333	1.29E+06	4207410.00
-16	95449.9	1.59E+06	5389680.00
-20	119235.3	1.76E+06	6573270.00
-24	129093.4	1.93E+06	7646680.00
-28	137908.6333	2.06E+06	8753250.00
+4	37608.26667	3.66E+05	1584450
+8	65998.83333	6.56E+05	2972510
+12	86365.53333	8.72E+05	4207410
+16	95449.9	1.06E+06	5389680
+20	119235.3	1.25E+06	6573270
+24	129093.4	1.42E+06	7646680
+28	137908.6333	1.56E+06	8753250
 """
 
 keys, values, values2, values3, values0, values20, values30 = [], [], [], [], [], [], []
@@ -33,8 +36,8 @@ plt.rcParams["font.size"] = 30
 matplotlib.rcParams['lines.markersize'] = 20
 #matplotlib.rcParams["font.family"] = "Times New Roman"
 fig, ax = plt.subplots(figsize=(14, 9))
-plt.rcParams["font.family"] = "serif"
-matplotlib.rcParams["font.family"] = "serif"
+plt.rcParams["font.family"] = "Times"
+matplotlib.rcParams["font.family"] = "Times"
 
 ax.yaxis.set_major_formatter(formatter)
 ax.plot(keys, values, marker="o", label='2PL', linewidth=3)
@@ -44,16 +47,16 @@ ax.plot(keys, values3, marker="^", label='Rolis', linewidth=3)
 # ax.set(xlabel='# of partitions or threads',
 #        ylabel='Throughput (txns/sec)',
 #        title=None)
-ax.set_xlabel("# of partitions or threads", fontname="serif")
-ax.set_ylabel("Throughput (txns/sec)", fontname="serif")
+ax.set_xlabel("\# of partitions or threads", fontname="Times")
+ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
 ax.set_xticks([4, 8, 12, 16, 20, 24, 28])
 ax.set_xticklabels(["4", "8", "12", "16", "20", "24", "28"])
 ax.legend(bbox_to_anchor=(0.002, 0.798, 0.4, 0.2), mode="expand", ncol=1, loc="upper left", borderaxespad=0, frameon=True, fancybox=False, framealpha=1)
 ax.yaxis.grid()
 for tick in ax.get_xticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 #
 #
 # plt.rcParams["font.size"] = 20

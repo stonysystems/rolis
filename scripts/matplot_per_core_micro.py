@@ -7,6 +7,9 @@ def millions(x, pos):
     return '%1.1fK' % (x * 1e-3)
 formatter = FuncFormatter(millions)
 
+matplotlib.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
+
 micro = """
 463392	455310	511141.00
 918547	910193	1026960.00
@@ -62,8 +65,8 @@ plt.rcParams["font.size"] = 48
 matplotlib.rcParams['lines.markersize'] = 14
 #matplotlib.rcParams["font.family"] = "Times"
 fig, ax = plt.subplots(figsize=(16, 10))
-plt.rcParams["font.family"] = "serif"
-matplotlib.rcParams["font.family"] = "serif"
+plt.rcParams["font.family"] = "Times"
+matplotlib.rcParams["font.family"] = "Times"
 
 ax.yaxis.set_major_formatter(formatter)
 #ax.plot(keys, values0, marker="o", label='2-replica', linewidth=6)
@@ -71,16 +74,16 @@ ax.plot(keys, values20, marker="s", label='Rolis', linewidth=6)
 ax.plot(keys, values30, marker="^", label='Silo', linewidth=6)
 ax.set_xticks([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30])
 ax.set_xticklabels(["2", "", "", "8", "", "", "", "16", "", "", "", "24", "", "", "30"], fontsize=60)
-ax.set_xlabel("# of threads", fontsize=60, fontname="serif")
+ax.set_xlabel("\# of threads", fontsize=60, fontname="Times")
 
 ax.set_yticks([300 * 10**3, 360 * 10**3, 420 * 10**3, 480 * 10**3, 540 * 10**3, 600 * 10**3])
 ax.set_yticklabels(["300", "360", "420", "480", "540", "600"], fontsize=60)
 ax.legend(bbox_to_anchor=(0.538, -0.01, 0.46, 1), mode="expand", ncol=1, loc="upper right", borderaxespad=0, frameon=True, fancybox=False, framealpha=1)
 ax.yaxis.grid()
 for tick in ax.get_xticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 fig.tight_layout()
 fig.savefig("per_core_micro.eps", format='eps', dpi=1000)
 plt.show()

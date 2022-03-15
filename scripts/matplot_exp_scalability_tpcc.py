@@ -41,6 +41,9 @@ tpcc = """
 31	1026620	1491820
 """
 
+matplotlib.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
+
 # only show even numbers
 keys, values, values2, values3, values0, values20, values30 = [], [], [], [], [], [], []
 idx = 0
@@ -63,8 +66,8 @@ for l in tpcc.split("\n"):
 
 plt.rcParams["font.size"] = 48
 matplotlib.rcParams['lines.markersize'] = 14
-plt.rcParams["font.family"] = "serif"
-matplotlib.rcParams["font.family"] = "serif"
+plt.rcParams["font.family"] = "Times"
+matplotlib.rcParams["font.family"] = "Times"
 fig, ax = plt.subplots(figsize=(16, 10))
 
 ax.yaxis.set_major_formatter(formatter)
@@ -74,15 +77,15 @@ ax.plot(keys, values3, marker="^", label='Silo', linewidth=6)
 # https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot/43439132#43439132
 ax.set_xticks([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30])
 ax.set_xticklabels(["2", "", "", "8", "", "", "", "16", "", "", "", "24", "", "", "30"], fontsize=60)
-ax.set_xlabel("# of threads", fontsize=60, fontname="serif")
+ax.set_xlabel("\# of threads", fontsize=60, fontname="Times")
 
 ax.set_yticks([0 * 10**6, 0.3 * 10**6, 0.6 * 10**6, 0.9 * 10**6, 1.2 * 10**6, 1.5 * 10**6])
 ax.set_yticklabels(["0", "0.3", "0.6", "0.9", "1.2", "1.5"], fontsize=60)
 ax.legend(bbox_to_anchor=(0.004, -0.01, 0.4, 1), mode="expand", ncol=1, loc="upper left", borderaxespad=0, frameon=True, fancybox=False, framealpha=1)
 for tick in ax.get_xticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
-    tick.set_fontname("serif")
+    tick.set_fontname("Times")
 ax.yaxis.grid()
 
 fig.tight_layout()

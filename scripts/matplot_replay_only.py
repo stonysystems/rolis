@@ -2,7 +2,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
-
+matplotlib.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
 def millions(x, pos):
     return '%1.1fM' % (x * 1e-6)
 formatter = FuncFormatter(millions)
@@ -58,8 +59,8 @@ values2=[float(e) for e in values2]
 
 plt.rcParams["font.size"] = 30
 matplotlib.rcParams['lines.markersize'] = 14
-plt.rcParams["font.family"] = "serif"
-matplotlib.rcParams["font.family"] = "serif"
+plt.rcParams["font.family"] = "Times"
+matplotlib.rcParams["font.family"] = "Times"
 fig, ax = plt.subplots(figsize=(14, 9))
 
 ax.yaxis.set_major_formatter(formatter)
@@ -73,8 +74,8 @@ ax.set_ylim([0, 2.4 * 10**6])
 # ax.set(xlabel='# of threads',
 #        ylabel='Throughput (txns/sec)',
 #        title=None)
-ax.set_xlabel("# of threads", fontname="serif")
-ax.set_ylabel("Throughput (txns/sec)", fontname="serif")
+ax.set_xlabel("\# of threads", fontname="Times")
+ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
 ax.yaxis.grid()
 ax.legend(bbox_to_anchor=(0, 0.92, 1, 0.2), mode="expand", ncol=2, loc="upper left", borderaxespad=0.2, frameon=False)
 
