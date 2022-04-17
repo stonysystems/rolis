@@ -35,7 +35,7 @@ for l in txt.split("\n"):
     values5.append(float(items[5]))
     values6.append(float(items[6]))
 
-plt.rcParams["font.size"] = 30
+plt.rcParams["font.size"] = 40
 matplotlib.rcParams['lines.markersize'] = 14
 fig, ax = plt.subplots(figsize=(14, 9))
 plt.rcParams["font.family"] = "Times"
@@ -49,8 +49,8 @@ ax.set_xticks(keys)
 #         title=None)
 ax.set_xlabel("Batch size", fontname="Times")
 ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
-ax.plot(keys, values1, marker="+", label='TPUT', linestyle='--', linewidth=3)
-ax.legend(bbox_to_anchor=(0, 0.92, 0.25, 0.2), mode="expand", ncol=1, loc="upper left", borderaxespad=0, frameon=False)
+ax.plot(keys, values1, marker="+", label='TPUT  ', linestyle='--', linewidth=3)
+ax.legend(bbox_to_anchor=(0, 0.92, 0.27, 0.2), handlelength=1, mode="expand", ncol=1, loc="upper left", borderaxespad=0, frameon=False)
 ax.set_ylim([0 * 1000, 700 * 1000])
 
 ax2=ax.twinx()
@@ -64,7 +64,7 @@ ax2.yaxis.grid()
 #         title=None)
 ax2.set_ylabel("Latency (ms)", fontname="Times")
 ax2.set_xticklabels(["50", "100", "200", "400", "800", "1600", "3200"])
-ax2.legend(bbox_to_anchor=(0.25, 0.92, 0.75, 0.2), mode="expand", ncol=3, loc="upper left", borderaxespad=0, frameon=False, fancybox=False)
+ax2.legend(bbox_to_anchor=(0.27, 0.92, 0.73, 0.2), handlelength=1, mode="expand", ncol=3, loc="upper left", borderaxespad=0, frameon=False, fancybox=False)
 ax2.set_ylim([0, 240])
 for tick in ax.get_xticklabels():
     tick.set_fontname("Times")
@@ -74,6 +74,10 @@ for tick in ax2.get_xticklabels():
         tick.set_fontname("Times")
 for tick in ax2.get_yticklabels():
     tick.set_fontname("Times")
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
+
 fig.tight_layout()
+plt.subplots_adjust(bottom=0.18)
 fig.savefig("latency-2.eps", format='eps', dpi=1000)
 plt.show()

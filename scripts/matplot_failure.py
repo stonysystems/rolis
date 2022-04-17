@@ -312,49 +312,54 @@ txt = """
 217110	373670	657290
 217840	375790	651100
 """
-value_0, value_1, value_2, value_3 = [], [], [], []
+keys, value_0, value_1, value_2, value_3 = [], [], [], [], []
 idx = 0
 for l in txt.split("\n"):
     items = l.replace("\n", "").split("\t")
     if len(items) != 3:
         continue
     idx += 1
+    keys.append(idx)
     value_0.append(float(items[0]))
     value_1.append(float(items[1]))
     value_2.append(float(items[2]))
-    #value_3.append(float(items[3]))
 
-keys_0=[i+1 for i in range(len(value_0))]
-keys_1=[i+1 for i in range(len(value_1))]
-keys_2=[i+1 for i in range(len(value_2))]
-#keys_3=[i+1 for i in range(len(value_3))]
-
-plt.rcParams["font.size"] = 30
-matplotlib.rcParams['lines.markersize'] = 14
+print(len(value_0), len(value_1), len(value_2))
+plt.rcParams["font.size"] = 40
 matplotlib.rcParams['lines.markersize'] = 14
 plt.rcParams["font.family"] = "Times"
 fig, ax = plt.subplots(figsize=(14, 9))
 
 ax.yaxis.set_major_formatter(formatter)
-print(keys_0)
-ax.plot(keys_0, value_0, label='4 threads', linewidth=3)
-ax.plot(keys_1, value_1, label='8 threads', linewidth=3)
-ax.plot(keys_2, value_2, label='16 threads', linewidth=3)
-# ax.plot(keys_3, value_3, label='32 cores')
-ax.legend(bbox_to_anchor=(0, 0.92, 1, 0.2), mode="expand", ncol=2, loc="upper left", borderaxespad=0.2, frameon=False)
-ax.set_xticks(list(range(1, 306, 50)))
-ax.set_xticklabels([int(e/10) for e in list(range(0, 306, 50))])
+ax.plot(keys, value_0, label='4 threads', linewidth=3)
+ax.plot(keys, value_1, label='8 threads', linewidth=3)
+ax.plot(keys, value_2, label='16 threads', linewidth=3)
+l = ax.legend(bbox_to_anchor=(0, 0.96, 1, 0.2), handlelength=1,mode="expand", ncol=3, loc="upper left", borderaxespad=0.2, frameon=False, prop={'size': 40})
+# for legend_handle in l.legendHandles:
+#     legend_handle.set_sizes([50])
+# handles, labels = ax.get_legend_handles_labels()
+# for h in handles: 
+#     h.set_linestyle("")
+#     ax.legend(handles, labels)
+
+ax.set_xticks([1, 50, 100, 150, 200, 250, 300])
+ax.set_xticklabels([0, 5, 10, 15, 20, 25, 30])
 
 # ax.set(xlabel='Time (sec)',
 #        ylabel='Throughput (txns/sec)',
 #        title=None)
 ax.set_xlabel("Time (sec)", fontname="Times")
 ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
-ax.legend(bbox_to_anchor=(0, 0.92, 1, 0.2), mode="expand", ncol=4, loc="upper left", borderaxespad=0.2, frameon=False)
+#ax.legend(bbox_to_anchor=(0, 0.92, 1, 0.2), mode="expand", ncol=4, loc="upper left", borderaxespad=0.2, frameon=False)
 ax.grid()
 for tick in ax.get_xticklabels():
     tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
     tick.set_fontname("Times")
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
+
+fig.tight_layout()
+plt.subplots_adjust(bottom=0.18)
 fig.savefig("failure_recovery.eps", format='eps', dpi=1000)
 plt.show()

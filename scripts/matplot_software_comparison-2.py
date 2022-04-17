@@ -92,6 +92,10 @@ for tick in ax.get_yticklabels():
 # ax[1].yaxis.grid()
 # ax[1].set_title("(b) 2PL & Calvin & Rolis", y=-0.28, fontsize=32)
 
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
+
 fig.tight_layout()
+plt.subplots_adjust(bottom=0.14)
 fig.savefig("software_comparison.png", format='png', dpi=1000)
 plt.show()

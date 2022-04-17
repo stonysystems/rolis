@@ -61,7 +61,7 @@ for l in micro.split("\n"):
     values30.append(float(items[2]))
 
 # https://matplotlib.org/stable/tutorials/introductory/customizing.html
-plt.rcParams["font.size"] = 48
+plt.rcParams["font.size"] = 60
 matplotlib.rcParams['lines.markersize'] = 14
 plt.rcParams["font.family"] = "Times"
 matplotlib.rcParams["font.family"] = "Times"
@@ -86,6 +86,10 @@ for tick in ax.get_yticklabels():
     tick.set_fontname("Times")
 ax.yaxis.grid()
 
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
+
 fig.tight_layout()
+plt.subplots_adjust(bottom=0.18, left=0.1)
 fig.savefig("exp_scalability_micro.eps", format='eps', dpi=1000)
 plt.show()

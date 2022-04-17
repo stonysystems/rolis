@@ -89,6 +89,10 @@ for tick in ax.get_xticklabels():
     tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
     tick.set_fontname("Times")
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
+
 fig.tight_layout()
+plt.subplots_adjust(bottom=0.14)
 fig.savefig("skewed.eps", format='eps', dpi=1000)
 plt.show()

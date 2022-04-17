@@ -60,7 +60,7 @@ for l in tpcc.split("\n"):
     values3.append(float(items[2])/(idx + 0.0))
 
 
-plt.rcParams["font.size"] = 48
+plt.rcParams["font.size"] = 60
 #matplotlib.rcParams['lines.markersize'] = 20
 #matplotlib.rcParams["font.family"] = "Times"
 #matplotlib.rcParams["font.family"] = "Times New Roman"
@@ -88,6 +88,11 @@ for tick in ax.get_xticklabels():
     tick.set_fontname("Times")
 for tick in ax.get_yticklabels():
     tick.set_fontname("Times")
+
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
+
 fig.tight_layout()
+plt.subplots_adjust(bottom=0.18, left=0.1)
 fig.savefig("per_core_tpcc.eps", format='eps', dpi=1000)
 plt.show()

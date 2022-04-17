@@ -64,7 +64,7 @@ for l in tpcc.split("\n"):
 # matplotlib.rcParams['lines.markersize'] = 24
 # fig, ax = plt.subplots(figsize=(10, 10))
 
-plt.rcParams["font.size"] = 48
+plt.rcParams["font.size"] = 60
 matplotlib.rcParams['lines.markersize'] = 14
 plt.rcParams["font.family"] = "Times"
 matplotlib.rcParams["font.family"] = "Times"
@@ -87,7 +87,13 @@ for tick in ax.get_xticklabels():
 for tick in ax.get_yticklabels():
     tick.set_fontname("Times")
 ax.yaxis.grid()
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
+# ax.margins(x=0)
+# plt.margins(x=0)
 
 fig.tight_layout()
+# plt.tight_layout()
+plt.subplots_adjust(bottom=0.18, left=0.1)
 fig.savefig("exp_scalability_tpcc.eps", format='eps', dpi=1000)
 plt.show()

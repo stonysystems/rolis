@@ -57,7 +57,7 @@ for l in txt.split("\n"):
 values=[float(e) for e in values]
 values2=[float(e) for e in values2]
 
-plt.rcParams["font.size"] = 30
+plt.rcParams["font.size"] = 40
 matplotlib.rcParams['lines.markersize'] = 14
 plt.rcParams["font.family"] = "Times"
 matplotlib.rcParams["font.family"] = "Times"
@@ -77,8 +77,12 @@ ax.set_ylim([0, 2.4 * 10**6])
 ax.set_xlabel("\# of threads", fontname="Times")
 ax.set_ylabel("Throughput (txns/sec)", fontname="Times")
 ax.yaxis.grid()
-ax.legend(bbox_to_anchor=(0, 0.92, 1, 0.2), mode="expand", ncol=2, loc="upper left", borderaxespad=0.2, frameon=False)
+ax.legend(bbox_to_anchor=(0, 0.96, 1, 0.2), mode="expand", ncol=2, loc="upper left", borderaxespad=0.2, frameon=False)
+
+ax.xaxis.labelpad = 20
+ax.yaxis.labelpad = 20
 
 fig.tight_layout()
+plt.subplots_adjust(bottom=0.18)
 fig.savefig("exp_replay_only.eps", format='eps', dpi=1000)
 plt.show()
